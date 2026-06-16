@@ -1,1 +1,1380 @@
-local s_players      = game:GetService("Players") local s_tweenservice = game:GetService("TweenService") local s_runservice   = game:GetService("RunService") local s_coregui      = game:GetService("CoreGui") local s_uis          = game:GetService("UserInputService") LOCALPLAYER = s_players.LocalPlayer MOUSE       = LOCALPLAYER:GetMouse() VIEWPORT    = workspace.CurrentCamera.ViewportSize TWEENINFO   = TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut) function _internal_gettime() local time = os.date((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(18,'55,90,76,55,95,76,55,101'), os.time()) return time end function _internal_randomstr(len) if not len then len = 50 end local _0x7dc923 = { { 97, 122 }, { 65, 90 }, { 48, 57 } } local _0xfb17c3 = "" for i = 1, len do math.randomseed(os.clock() ^ 5) local charset = _0x7dc923[math.random(1, #_0x7dc923)] _0xfb17c3 = _0xfb17c3 .. string.char(math.random(charset[1], charset[2])) end return _0xfb17c3 end local _0x3427a9 = { [(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(9,'104,112,106,118,110,124,110,119,124,110,55,117,126,106')] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(7,'90,106,121,108,108,117,78,124,112')); [(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(15,'110,131,120,114,122')] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(12,'88,123,111,109,120,95,111,126,117,124,128')); [(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(5,'100,124,102,121,106,119,114,102,119,112')] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(8,'92,109,128,124,84,105,106,109,116')); [(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(14,'109,129,115,124,129,115')] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(11,'95,112,131,127,87,108,109,112,119')); [(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(15,'110,125,126,131,120,117,130')] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(20,'90,134,117,129,121')); [(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(24,'119,108,125,133,136,132,121,140,125')] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(7,'77,121,104,116,108')); [(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(23,'118,126,120,132,124')] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(8,'92,109,128,124,84,105,106,109,116')); [(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(15,'110,130,116,125,130,116,64')] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(20,'104,121,140,136,96,117,118,121,128')); [(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(2,'97,70,103,117,101,116,107,114,118,107,113,112')] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(14,'98,115,134,130,90,111,112,115,122')); [(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(16,'111,101,89,99,132,130,127,123,117')] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(15,'100,88,98,131,129,126,122,116')); [(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(16,'111,132,121,125,117,131,132,113,125,128')] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(8,'92,109,128,124,84,105,106,109,116')); [(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(9,'104,94,82,85,114,124,125,85,106,130,120,126,125')] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(2,'87,75,78,107,117,118,78,99,123,113,119,118')); [(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(12,'107,109,127,127,113,128,127')] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(14,'84,125,122,114,115,128')); [(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(11,'106,121,122,127,116,113')] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(11,'94,122,128,121,111')); } _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(19,'114,122,116,128,120,134,120,129,134,120,65,127,136,116')].IgnoreGuiInset = true _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(21,'116,124,118,130,122,136,122,131,136,122,67,129,138,118')].ScreenInsets = Enum.ScreenInsets.DeviceSafeInsets _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(24,'119,127,121,133,125,139,125,134,139,125,70,132,141,121')].ZIndexBehavior = Enum.ZIndexBehavior.Sibling _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(9,'104,112,106,118,110,124,110,119,124,110,55,117,126,106')].Name = (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(14,'117,111,123,115,129,115,124,129,115,109').._internal_randomstr(32) _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(6,'101,109,103,115,107,121,107,116,121,107,52,114,123,103')].Parent = s_runservice:IsStudio() and s_players.LocalPlayer:WaitForChild("PlayerGui") or gethui() or s_coregui _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(7,'102,126,104,123,108,121,116,104,121,114')].Font = Enum.Font.RobotoMono _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(7,'102,126,104,123,108,121,116,104,121,114')].RichText = true _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(1,'96,120,98,117,102,115,110,98,115,108')].Text = "<font color=\"#31ff42\">gamesense</font> | focat9123123 | 00:00:00" _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(4,'99,123,101,120,105,118,113,101,118,111')].TextColor3 = Color3.fromRGB(255, 255, 255) _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(10,'105,129,107,126,111,124,119,107,124,117')].TextSize = 12 _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(13,'108,132,110,129,114,127,122,110,127,120')].AutomaticSize = Enum.AutomaticSize.XY _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(24,'119,143,121,140,125,138,133,121,138,131')].BackgroundColor3 = Color3.fromRGB(26.000000350177288, 26.000000350177288, 26.000000350177288) _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(15,'110,134,112,131,116,129,124,112,129,122')].BorderColor3 = Color3.fromRGB(99.00000169873238, 99.00000169873238, 99.00000169873238) _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(9,'104,128,106,125,110,123,118,106,123,116')].Position = UDim2.new(0.973097622, -204, 0.0188679248, 0) _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(13,'108,132,110,129,114,127,122,110,127,120')].Size = UDim2.new(0, 221, 0, 29) _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(22,'117,141,119,138,123,136,131,119,136,129')].Name = (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(15,'134,112,131,116,129,124,112,129,122') _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(24,'119,143,121,140,125,138,133,121,138,131')].Parent = _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(19,'114,122,116,128,120,134,120,129,134,120,65,127,136,116')] _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(25,'120,140,126,135,140,126')].Font = Enum.Font.RobotoMono _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(20,'115,135,121,130,135,121')].Text = (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(14,'129,115,124,129,115') _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(21,'116,136,122,131,136,122')].TextColor3 = Color3.fromRGB(49.000004678964615, 255, 66.00000366568565) _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(7,'102,122,108,117,122,108')].TextSize = 12 _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(17,'112,132,118,127,132,118')].BackgroundColor3 = Color3.fromRGB(26.000000350177288, 26.000000350177288, 26.000000350177288) _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(6,'101,121,107,116,121,107')].BackgroundTransparency = 1 _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(11,'106,126,112,121,126,112')].BorderColor3 = Color3.fromRGB(0, 0, 0) _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(10,'105,125,111,120,125,111')].BorderSizePixel = 0 _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(23,'118,138,124,133,138,124')].Position = UDim2.new(0.25, -100, 0.49000001, -13) _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(20,'115,135,121,130,135,121')].Size = UDim2.new(0, 200, 0, 26) _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(4,'99,119,105,114,119,105')].Name = (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(17,'132,118,127,132,118') _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(3,'98,118,104,113,118,104')].Parent = _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(14,'109,133,111,130,115,128,123,111,128,121,46,112,117')] _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(9,'104,119,120,125,114,111,124')].AnchorPoint = Vector2.new(1, 1) _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(20,'115,130,131,136,125,122,135')].BackgroundColor3 = Color3.fromRGB(255, 255, 255) _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(12,'107,122,123,128,117,114,127')].BackgroundTransparency = 1 _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(14,'109,124,125,130,119,116,129')].BorderColor3 = Color3.fromRGB(27.000002190470695, 42.000001296401024, 53.000004440546036) _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(13,'108,123,124,129,118,115,128')].BorderSizePixel = 0 _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(3,'98,113,114,119,108,105,118')].ClipsDescendants = true _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(20,'115,130,131,136,125,122,135')].Position = UDim2.new(1, -25, 1, -25) _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(3,'98,113,114,119,108,105,118')].Size = UDim2.new(0, 296, 0, 578) _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(23,'118,133,134,139,128,125,138')].ZIndex = 5 _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(4,'99,114,115,120,109,106,119')].Name = (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(5,'115,116,121,110,107,120') _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(14,'109,124,125,130,119,116,129')].Parent = _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(15,'110,118,112,124,116,130,116,125,130,116,61,123,132,112')] _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(10,'105,94,111,119,122,118,107,126,111')].AnchorPoint = Vector2.new(0.5, 0.5) _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(1,'96,85,102,110,113,109,98,117,102')].BackgroundColor3 = Color3.fromRGB(21.000000648200512, 21.000000648200512, 20.000000707805157) _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(22,'117,106,123,131,134,130,119,138,123')].BorderColor3 = Color3.fromRGB(99.00000169873238, 99.00000169873238, 99.00000169873238) _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(16,'111,100,117,125,128,124,113,132,117')].BorderMode = Enum.BorderMode.Middle _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(15,'110,99,116,124,127,123,112,131,116')].BorderSizePixel = 0 _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(14,'109,98,115,123,126,122,111,130,115')].Position = UDim2.new(0.498310804, 0, 0.912629783, 0) _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(25,'120,109,126,134,137,133,122,141,126')].Size = UDim2.new(0, 295, 0, 91) _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(3,'98,87,104,112,115,111,100,119,104')].Visible = false _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(13,'108,97,114,122,125,121,110,129,114')].ZIndex = 100 _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(2,'97,86,103,111,114,110,99,118,103')].Name = (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(12,'96,113,121,124,120,109,128,113') _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(6,'101,90,107,115,118,114,103,122,107')].Parent = _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(2,'97,112,113,118,107,104,117')] _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(21,'116,124,118,130,122')].Font = Enum.Font.RobotoMono _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(2,'97,105,99,111,103')].Text = "game<font color=\"#31ff42\">sense</font>" _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(25,'120,128,122,134,126')].TextColor3 = Color3.fromRGB(255, 255, 255) _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(15,'110,118,112,124,116')].TextSize = 18 _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(10,'105,113,107,119,111')].TextXAlignment = Enum.TextXAlignment.Left _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(4,'99,107,101,113,105')].BackgroundColor3 = Color3.fromRGB(26.000000350177288, 26.000000350177288, 26.000000350177288) _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(25,'120,128,122,134,126')].BackgroundTransparency = 1 _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(9,'104,112,106,118,110')].BorderColor3 = Color3.fromRGB(0, 0, 0) _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(9,'104,112,106,118,110')].BorderSizePixel = 0 _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(22,'117,125,119,131,123')].Position = UDim2.new(0.398305088, -100, 0.225274727, -13) _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(1,'96,104,98,110,102')].Size = UDim2.new(0, 200, 0, 26) _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(15,'110,118,112,124,116')].Name = (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(4,'107,101,113,105') _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(8,'103,111,105,117,109')].Parent = _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(15,'110,99,116,124,127,123,112,131,116')] _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(25,'120,128,122,134,126')].RichText = true _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(14,'109,82,115,129,113,128,119,126,130,119,125,124')].Font = Enum.Font.RobotoMono _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(22,'117,90,123,137,121,136,127,134,138,127,133,132')].Text = "hey you're a bitch lol 123213123123123123" _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(10,'105,78,111,125,109,124,115,122,126,115,121,120')].TextColor3 = Color3.fromRGB(168.0000051856041, 168.0000051856041, 168.0000051856041) _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(21,'116,89,122,136,120,135,126,133,137,126,132,131')].TextSize = 14 _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(19,'114,87,120,134,118,133,124,131,135,124,130,129')].TextWrapped = true _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(4,'99,72,105,119,103,118,109,116,120,109,115,114')].TextXAlignment = Enum.TextXAlignment.Left _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(24,'119,92,125,139,123,138,129,136,140,129,135,134')].TextYAlignment = Enum.TextYAlignment.Top _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(21,'116,89,122,136,120,135,126,133,137,126,132,131')].BackgroundColor3 = Color3.fromRGB(26.000000350177288, 26.000000350177288, 26.000000350177288) _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(15,'110,83,116,130,114,129,120,127,131,120,126,125')].BackgroundTransparency = 1 _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(18,'113,86,119,133,117,132,123,130,134,123,129,128')].BorderColor3 = Color3.fromRGB(0, 0, 0) _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(15,'110,83,116,130,114,129,120,127,131,120,126,125')].BorderSizePixel = 0 _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(13,'108,81,114,128,112,127,118,125,129,118,124,123')].Position = UDim2.new(0.398305088, -100, 0.5, -13) _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(2,'97,70,103,117,101,116,107,114,118,107,113,112')].Size = UDim2.new(0, 262, 0, 38) _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(20,'115,88,121,135,119,134,125,132,136,125,131,130')].Name = (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(17,'85,118,132,116,131,122,129,133,122,128,127') _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(20,'115,88,121,135,119,134,125,132,136,125,131,130')].Parent = _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(13,'108,97,114,122,125,121,110,129,114')] _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(5,'100,90,78,88,121,119,116,112,106')].ApplyStrokeMode = Enum.ApplyStrokeMode.Border _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(17,'112,102,90,100,133,131,128,124,118')].Color = Color3.fromRGB(99.00000169873238, 99.00000169873238, 99.00000169873238) _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(16,'111,101,89,99,132,130,127,123,117')].LineJoinMode = Enum.LineJoinMode.Bevel _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(12,'107,97,85,95,128,126,123,119,113')].Parent = _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(14,'109,98,115,123,126,122,111,130,115')] _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(8,'103,124,113,117,109,123,124,105,117,120')].Font = Enum.Font.RobotoMono _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(13,'108,129,118,122,114,128,129,110,122,125')].Text = (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(20,'68,68,78,68,68,78,68,68') _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(11,'106,127,116,120,112,126,127,108,120,123')].TextColor3 = Color3.fromRGB(168.0000051856041, 168.0000051856041, 168.0000051856041) _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(24,'119,140,129,133,125,139,140,121,133,136')].TextSize = 12 _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(16,'111,132,121,125,117,131,132,113,125,128')].TextWrapped = true _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(20,'115,136,125,129,121,135,136,117,129,132')].TextXAlignment = Enum.TextXAlignment.Right _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(23,'118,139,128,132,124,138,139,120,132,135')].BackgroundColor3 = Color3.fromRGB(26.000000350177288, 26.000000350177288, 26.000000350177288) _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(24,'119,140,129,133,125,139,140,121,133,136')].BackgroundTransparency = 1 _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(13,'108,129,118,122,114,128,129,110,122,125')].BorderColor3 = Color3.fromRGB(0, 0, 0) _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(25,'120,141,130,134,126,140,141,122,134,137')].BorderSizePixel = 0 _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(13,'108,129,118,122,114,128,129,110,122,125')].Position = UDim2.new(0.564406753, -100, 0.917582393, -13) _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(21,'116,137,126,130,122,136,137,118,130,133')].Size = UDim2.new(0, 215, 0, 13) _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(8,'103,124,113,117,109,123,124,105,117,120')].Name = (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(13,'129,118,122,114,128,129,110,122,125') _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(22,'117,138,127,131,123,137,138,119,131,134')].Parent = _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(6,'101,90,107,115,118,114,103,122,107')] _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(20,'115,105,93,96,125,135,136,96,117,141,131,137,136')].Padding = UDim.new(0, 6) _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(14,'109,99,87,90,119,129,130,90,111,135,125,131,130')].HorizontalAlignment = Enum.HorizontalAlignment.Right _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(11,'106,96,84,87,116,126,127,87,108,132,122,128,127')].SortOrder = Enum.SortOrder.LayoutOrder _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(23,'118,108,96,99,128,138,139,99,120,144,134,140,139')].VerticalAlignment = Enum.VerticalAlignment.Bottom _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(17,'112,102,90,93,122,132,133,93,114,138,128,134,133')].Parent = _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(13,'108,123,124,129,118,115,128')] _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(20,'115,117,135,135,121,136,135')].Name = (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(19,'116,134,134,120,135,134') _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(8,'103,105,123,123,109,124,123')].Parent = _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(25,'120,135,136,141,130,127,140')] _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(13,'108,123,124,129,118,115')].RollOffMode = Enum.RollOffMode.InverseTapered _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(16,'111,126,127,132,121,118')].SoundId = "rbxassetid://131303727931519" _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(19,'114,129,130,135,124,121')].Name = (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(7,'117,118,123,112,109') _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(5,'100,115,116,121,110,107')].Parent = _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(12,'107,109,127,127,113,128,127')] local notif_lib = {} baseNotif  = _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(11,'106,95,112,120,123,119,108,127,112')] notifSound = _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(9,'104,119,120,125,114,111')] function tween(go, t, dir) dir = dir or "in" local obj = go local _0xe9b37e = (dir == "in") and 1 or 0 local _0xc859c0 = (dir == "in") and 0 or 1 obj.BackgroundTransparency = _0xe9b37e local tweenInfo = TweenInfo.new(t, Enum.EasingStyle.Quint, Enum.EasingDirection.Out, 0, false, 0) local tween = game:GetService("TweenService"):Create(obj, tweenInfo, { BackgroundTransparency = _0xc859c0 }) tween:Play() if dir == (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(23,'134,140,139') then for _, e in pairs(obj:GetDescendants()) do if e:IsA((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(1,'72,118,106,80,99,107,102,100,117')) then if e:IsA((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(5,'89,106,125,121,81,102,103,106,113')) then local texttween = game:GetService("TweenService"):Create(e, tweenInfo, { TextTransparency = _0xc859c0 }) texttween:Play() elseif e:IsA((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(21,'94,130,118,124,122,97,118,119,122,129')) or e:IsA((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(2,'75,111,99,105,103,68,119,118,118,113,112')) then local imgt = game:GetService("TweenService"):Create(e, tweenInfo, { ImageTransparency = _0xc859c0 }) imgt:Play() elseif e:IsA((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(18,'103,91,101,134,132,129,125,119')) then local st = game:GetService("TweenService"):Create(e, tweenInfo, { Transparency = _0xc859c0 }) st:Play() end end end end end function notif_lib:MakeNotification(notif_table: table) local text = notif_table.Description or (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(14,'98,118,119,129,46,119,129,46,111,124,46,115,134,111,123,126,122,115,46,124,125,130,119,116,119,113,111,130,119,125,124,47') local dur = notif_table.Duration or 5 local newNotif = baseNotif:Clone() newNotif.Parent = _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(8,'103,118,119,124,113,110,123')] newNotif.Description.Text = text newNotif.timestamp.Text = _internal_gettime() newNotif.Visible = true newNotif.Name = (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(13,'116,110,122,114,128,114,123,128,114,59,121,130,110,45,58,45').._internal_randomstr(8) local holder = _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(22,'117,132,133,138,127,124,137')] local notifications = holder:GetChildren() local _0x3b2ca9 = #notifications local layout = holder.UIListLayout local layoutOrder = layout.Padding.Offset for i, notification in ipairs(notifications) do if notification ~= baseNotif and notification ~= newNotif and notification ~= layout and notification:IsA((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(25,'95,139,122,134,126')) then if _0x3b2ca9 == 1 then layoutOrder = layoutOrder - 1 else layoutOrder = notification.LayoutOrder + 1 end tween(notification, 0.25) end end newNotif.LayoutOrder = layoutOrder notifSound:Play() tween(newNotif, 0.5, "in") spawn(function() wait(dur) tween(newNotif, 0.5, (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(20,'131,137,136')) wait(0.5) newNotif:Destroy() end) end local function _0x19d3c3() local _0x308f4b = {} _0x308f4b[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(22,'117,127,132,138,123,136,132,119,130')] = {} local watermark_gui  = script.Parent local watermark_text = _0x3427a9[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(13,'108,132,110,129,114,127,122,110,127,120')] local s_players      = game:GetService("Players") local s_runservice   = game:GetService("RunService") local heartbeat      = s_runservice.Heartbeat local localplayer    = s_players.LocalPlayer local displayname    = localplayer.DisplayName _0x308f4b[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(24,'119,129,134,140,125,138,134,121,132')][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(8,'111,109,124,103,124,113,117,109')] = function() local time = os.date((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(10,'47,82,68,47,87,68,47,93'), os.time()) return time end _0x308f4b[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(22,'117,127,132,138,123,136,132,119,130')][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(14,'131,126,114,111,130,115,109,133,111,130,115,128,123,111,128,121')] = function() local time = _0x308f4b[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(23,'118,128,133,139,124,137,133,120,131')][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(7,'110,108,123,102,123,112,116,108')]() watermark_text.Text = string.format("<font color=\"#31ff42\">gamesense</font> | %s | %s", displayname, time) end heartbeat:Connect(function() _0x308f4b[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(2,'97,107,112,118,103,116,112,99,110')][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(6,'123,118,106,103,122,107,101,125,103,122,107,120,115,103,120,113')]() end) print(string.format("[ gamesense.lua ] [ %s ] tick service connected", _0x308f4b[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(5,'100,110,115,121,106,119,115,102,113')][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(17,'120,118,133,112,133,122,126,118')]())) end coroutine.wrap(_0x19d3c3)() local Library = {} function Library:_validate(defaults: table, options: table) for option, value in pairs(defaults) do if options[option] == nil then options[option] = value end end return options end function Library:_tween(object, goal, callback) local tween = s_tweenservice:Create(object, TWEENINFO, goal) tween.Completed:Connect(callback or function() end) tween:Play() end function Library:Notify(options: table) local NOTIF_OPTIONS = Library:_validate({ Description = (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(13,'97,117,118,128,45,118,128,45,110,123,45,114,133,110,122,125,121,114,45,123,124,129,118,115,118,112,110,129,118,124,123,46'), Duration = 5 }, options or {}) notif_lib:MakeNotification(NOTIF_OPTIONS) end function Library:New(options: table) local GUI_OPTIONS = Library:_validate({ Name = (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(5,'108,102,114,106,120,106,115,120,106,51,113,122,102'), Padding = 6 }, options or {}) local GUI = { CurrentTab = nil } do GUI["1"] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(16,'99,115,130,117,117,126,87,133,121'), s_runservice:IsStudio() and s_players.LocalPlayer:WaitForChild("PlayerGui") or gethui() or s_coregui) GUI["1"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(6,'79,109,116,117,120,107,77,123,111,79,116,121,107,122')] = true; GUI["1"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(25,'108,124,139,126,126,135,98,135,140,126,141,140')] = Enum.ScreenInsets.DeviceSafeInsets; GUI["1"]["Name"] = [[gamesense.lua]]; GUI["1"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(14,'104,87,124,114,115,134,80,115,118,111,132,119,125,128')] = Enum.ZIndexBehavior.Sibling; GUI["2"] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(12,'82,126,109,121,113'), GUI["1"]); GUI["2"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(23,'89,134,137,123,124,137,106,128,145,124,103,128,143,124,131')] = 2; GUI["2"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(8,'74,105,107,115,111,122,119,125,118,108,75,119,116,119,122,59')] = Color3.fromRGB(22, 22, 21); GUI["2"]["Size"] = UDim2.new(0, 380, 0, 436); GUI["2"]["Position"] = UDim2.fromOffset( (VIEWPORT.X / 2) - GUI["2"].Size.X.Offset / 2, (VIEWPORT.Y / 2) - GUI["2"].Size.Y.Offset / 2 ) GUI["2"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(4,'70,115,118,104,105,118,71,115,112,115,118,55')] = Color3.fromRGB(100, 100, 100); GUI["2"]["Name"] = [[gamesense window]]; end do GUI["3"] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(9,'79,123,106,118,110'), GUI["2"]); GUI["3"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(6,'72,117,120,106,107,120,89,111,128,107,86,111,126,107,114')] = 0; GUI["3"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(9,'75,106,108,116,112,123,120,126,119,109,76,120,117,120,123,60')] = Color3.fromRGB(54, 54, 54); GUI["3"]["Size"] = UDim2.new(1, 0, 0, 1); GUI["3"]["Position"] = UDim2.new(0, 0, 0.10092, 0); GUI["3"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(24,'90,135,138,124,125,138,91,135,132,135,138,75')] = Color3.fromRGB(0, 0, 0); GUI["3"]["Name"] = [[sep]]; GUI["3a"] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(4,'74,118,101,113,105'), GUI["2"]); GUI["3a"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(25,'91,136,139,125,126,139,108,130,147,126,105,130,145,126,133')] = 0; GUI["3a"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(20,'86,117,119,127,123,134,131,137,130,120,87,131,128,131,134,71')] = Color3.fromRGB(94, 94, 94); GUI["3a"]["Size"] = UDim2.new(0, 380, 0, 44); GUI["3a"]["Position"] = UDim2.new(0.5, -190, 0, 0); GUI["3a"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(19,'85,130,133,119,120,133,86,130,127,130,133,70')] = Color3.fromRGB(0, 0, 0); GUI["3a"]["Name"] = [[titlebar]]; GUI["3a"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(12,'78,109,111,119,115,126,123,129,122,112,96,126,109,122,127,124,109,126,113,122,111,133')] = 0.9; if string.sub(options["Name"], 1, 9) == (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(14,'117,111,123,115,129,115,124,129,115') then options["Name"] = string.gsub(options["Name"], (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(6,'109,103,115,107,121,107,116,121,107'), "game<font color=\"#31ff42\">sense</font>"); end GUI["3c"] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(4,'88,105,124,120,80,101,102,105,112'), GUI["3a"]); GUI["3c"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(19,'85,130,133,119,120,133,102,124,141,120,99,124,139,120,127')] = 0; GUI["3c"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(18,'102,119,138,134,106,83,126,123,121,128,127,119,128,134')] = Enum.TextXAlignment.Left; GUI["3c"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(21,'87,118,120,128,124,135,132,138,131,121,88,132,129,132,135,72')] = Color3.fromRGB(27, 27, 27); GUI["3c"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(21,'105,122,141,137,104,126,143,122')] = 18; GUI["3c"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(14,'84,125,124,130,84,111,113,115')] = Font.new([[rbxasset://fonts/families/RobotoMono.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal); GUI["3c"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(1,'85,102,121,117,68,112,109,112,115,52')] = Color3.fromRGB(255, 255, 255); GUI["3c"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(5,'71,102,104,112,108,119,116,122,115,105,89,119,102,115,120,117,102,119,106,115,104,126')] = 1; GUI["3c"]["Size"] = UDim2.new(0, 200, 0, 26); GUI["3c"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(3,'69,114,117,103,104,117,70,114,111,114,117,54')] = Color3.fromRGB(0, 0, 0); GUI["3c"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(15,'99,116,135,131')] = typeof(options["Name"] == (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(16,'131,132,130,121,126,119')) and options["Name"] or "game<font color=\"#31ff42\">sense</font>.lua"; GUI["3c"]["Name"] = (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(6,'109,103,115,107,121,107,116,121,107,101').._internal_randomstr(32) GUI["3c"]["Position"] = UDim2.new(0.03947, 0, 0.20455, 0); GUI["3c"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(8,'90,113,107,112,92,109,128,124')] = true GUI["3d"] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(12,'85,121,109,115,113,78,129,128,128,123,122'), GUI["3a"]); GUI["3d"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(4,'77,113,101,107,105')] = [[rbxassetid://11293981586]]; GUI["3d"]["Size"] = UDim2.new(0, 18, 0, 18); GUI["3d"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(7,'73,104,106,114,110,121,118,124,117,107,91,121,104,117,122,119,104,121,108,117,106,128')] = 1; GUI["3d"]["Position"] = UDim2.new(0.96053, -18, 0.5, -9); end do GUI["3d"].MouseButton1Click:Connect(function() GUI["2"].Visible = false Library:Notify({ Description = "You can re-open the menu anytime by pressing \"Right-Control\".", Duration = 5 }) end) s_uis.InputBegan:Connect(function(input, gpe) if gpe then return end if input.KeyCode == Enum.KeyCode.RightControl then if not GUI["2"].Visible then GUI["2"].Visible = true else GUI["2"].Visible = false end end end) end do local _0xe1ed08  = nil local _0xd3f2e4 = nil local dragStart = nil local _0xac7102  = nil local function _0x0f748f(input) local delta = input.Position - dragStart GUI["2"].Position = UDim2.new( _0xac7102.X.Scale, _0xac7102.X.Offset + delta.X, _0xac7102.Y.Scale, _0xac7102.Y.Offset + delta.Y ) end local _0x9c1f65 = { Hover = false } GUI["3a"].MouseEnter:Connect(function() _0x9c1f65.Hover = true end) GUI["3a"].MouseLeave:Connect(function() _0x9c1f65.Hover = false end) s_uis.InputBegan:Connect(function(input, gpe) if gpe then return end if input.UserInputType == Enum.UserInputType.MouseButton1 then if _0x9c1f65.Hover then _0xe1ed08 = true dragStart = input.Position _0xac7102 = GUI["2"].Position end end end) s_uis.InputChanged:Connect(function(input, gpe) if gpe then return end if _0xe1ed08 and input.UserInputType == Enum.UserInputType.MouseMovement then _0x0f748f(input) end end) s_uis.InputEnded:Connect(function(input, gpe) if gpe then return end if input.UserInputType == Enum.UserInputType.MouseButton1 then _0xe1ed08 = false end end) end do function GUI:Destroy() GUI["2"]:Destroy() end end do GUI["29"] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(1,'71,115,98,110,102'), GUI["2"]); GUI["29"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(19,'85,130,133,119,120,133,102,124,141,120,99,124,139,120,127')] = 0; GUI["29"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(6,'72,103,105,113,109,120,117,123,116,106,73,117,114,117,120,57')] = Color3.fromRGB(255, 255, 255); GUI["29"]["Size"] = UDim2.new(0, 350, 0, 23); GUI["29"]["Position"] = UDim2.new(0.03947, 0, 0.12844, 0); GUI["29"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(9,'75,120,123,109,110,123,76,120,117,120,123,60')] = Color3.fromRGB(0, 0, 0); GUI["29"]["Name"] = [[tab selector]]; GUI["29"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(17,'83,114,116,124,120,131,128,134,127,117,101,131,114,127,132,129,114,131,118,127,116,138')] = 1; GUI["2d"] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(12,'97,85,88,117,127,128,88,109,133,123,129,128'), GUI["29"]); GUI["2d"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(16,'96,113,116,116,121,126,119')] = UDim.new(0, 6); GUI["2d"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(25,'108,136,139,141,104,139,125,126,139')] = Enum.SortOrder.LayoutOrder; GUI["2d"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(6,'76,111,114,114,74,111,120,107,105,122,111,117,116')] = Enum.FillDirection.Horizontal; end function GUI:CreateTab(options: table) options = Library:_validate({ Name = (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(1,'85,98,99') }, options or {}) local Tab = { Hover = false, Active = false } do Tab["2a"] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(6,'90,107,126,122,72,123,122,122,117,116'), GUI["29"]); Tab["2a"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(21,'105,122,141,137,105,135,138,131,120,118,137,122')] = Enum.TextTruncate.AtEnd; Tab["2a"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(6,'72,117,120,106,107,120,89,111,128,107,86,111,126,107,114')] = 0; Tab["2a"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(5,'89,106,125,121,88,110,127,106')] = 12; Tab["2a"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(18,'102,119,138,134,85,129,126,129,132,69')] = Color3.fromRGB(228, 228, 228); Tab["2a"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(15,'81,112,114,122,118,129,126,132,125,115,82,126,123,126,129,66')] = Color3.fromRGB(26, 26, 26); Tab["2a"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(16,'86,127,126,132,86,113,115,117')] = Font.new([[rbxasset://fonts/families/RobotoMono.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal); Tab["2a"]["Size"] = UDim2.new(0, 65, 0, 23); Tab["2a"]["Name"] = [[tab button]]; Tab["2a"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(10,'76,121,124,110,111,124,77,121,118,121,124,61')] = Color3.fromRGB(0, 0, 0); Tab["2a"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(6,'90,107,126,122')] = typeof(options["Name"] == (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(11,'126,127,125,116,121,114')) and options["Name"] or (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(12,'96,109,110') Tab["2a"]["Position"] = UDim2.new(0, 0, 0.26087, -6); Tab["2b"] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(10,'95,83,77,121,124,120,111,124'), Tab["2a"]); Tab["2b"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(7,'74,118,121,117,108,121,89,104,107,112,124,122')] = UDim.new(0, 2); Tab["2c"] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(15,'100,88,98,131,129,126,122,116'), Tab["2a"]); Tab["2c"]["Transparency"] = 0.8; Tab["2c"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(2,'67,114,114,110,123,85,118,116,113,109,103,79,113,102,103')] = Enum.ApplyStrokeMode.Border; Tab["2c"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(15,'91,120,125,116,89,126,120,125,92,126,115,116')] = Enum.LineJoinMode.Bevel; Tab["2c"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(11,'95,115,116,110,118,121,112,126,126')] = 0.6; Tab["2c"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(23,'90,134,131,134,137')] = Color3.fromRGB(100, 100, 100); Tab["4"] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(15,'98,114,129,126,123,123,120,125,118,85,129,112,124,116'), GUI["2"]); Tab["4"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(18,'83,117,134,123,136,119')] = true; Tab["4"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(2,'68,113,116,102,103,116,85,107,124,103,82,107,122,103,110')] = 0; Tab["4"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(18,'85,115,128,136,115,133,101,123,140,119')] = UDim2.new(0, 0, 1, 0); Tab["4"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(25,'91,122,124,132,128,139,136,142,135,125,92,136,133,136,139,76')] = Color3.fromRGB(255, 255, 255); Tab["4"]["Name"] = [[tab]]; Tab["4"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(12,'77,129,128,123,121,109,128,117,111,79,109,122,130,109,127,95,117,134,113')] = Enum.AutomaticSize.Y; Tab["4"]["Size"] = UDim2.new(0, 380, 0, 355); Tab["4"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(6,'89,105,120,117,114,114,72,103,120,79,115,103,109,107,73,117,114,117,120,57')] = Color3.fromRGB(21, 87, 50); Tab["4"]["Position"] = UDim2.new(0, 0, 0.18578, 0); Tab["4"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(16,'82,127,130,116,117,130,83,127,124,127,130,67')] = Color3.fromRGB(0, 0, 0); Tab["4"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(14,'97,113,128,125,122,122,80,111,128,98,118,119,113,121,124,115,129,129')] = 8; Tab["4"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(4,'70,101,103,111,107,118,115,121,114,104,88,118,101,114,119,116,101,118,105,114,103,125')] = 1; Tab["4"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(8,'94,113,123,113,106,116,109')] = false; Tab["5"] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(14,'84,128,111,123,115'), Tab["4"]); Tab["5"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(23,'89,134,137,123,124,137,106,128,145,124,103,128,143,124,131')] = 0; Tab["5"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(22,'88,119,121,129,125,136,133,139,132,122,89,133,130,133,136,73')] = Color3.fromRGB(255, 255, 255); Tab["5"]["Size"] = UDim2.new(0, 350, 0, 450); Tab["5"]["Position"] = UDim2.new(0.5, -175, 0.51876, -180); Tab["5"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(25,'91,136,139,125,126,139,92,136,133,136,139,76')] = Color3.fromRGB(0, 0, 0); Tab["5"]["Name"] = [[content]]; Tab["5"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(25,'91,122,124,132,128,139,136,142,135,125,109,139,122,135,140,137,122,139,126,135,124,146')] = 1; Tab["6"] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(16,'101,89,92,121,131,132,92,113,137,127,133,132'), Tab["5"]); Tab["6"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(16,'96,113,116,116,121,126,119')] = UDim.new(0, GUI_OPTIONS[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(2,'82,99,102,102,107,112,105')]) Tab["6"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(9,'92,120,123,125,88,123,109,110,123')] = Enum.SortOrder.LayoutOrder; end do function Tab:Activate() if not Tab.Active then if GUI.CurrentTab ~= nil then GUI.CurrentTab:Deactivate() end Tab.Active = true GUI.CurrentTab = Tab Tab["4"].Visible = true end end function Tab:Deactivate() if Tab.Active then Tab.Active = false Tab.Hover = false Tab["4"].Visible = false Library:_tween( Tab["2a"], { TextColor3 = Color3.fromRGB(228, 228, 228) } ) end end end do Tab["2a"].MouseEnter:Connect(function() Tab.Hover = true if not Tab.Active then Library:_tween( Tab["2a"], { TextColor3 = Color3.fromRGB(50, 255, 67) } ) end end) Tab["2a"].MouseLeave:Connect(function() Tab.Hover = false if not Tab.Active then Library:_tween( Tab["2a"], { TextColor3 = Color3.fromRGB(228, 228, 228) } ) end end) Tab["2a"].MouseButton1Down:Connect(function() Tab:Activate() end) end if GUI.CurrentTab == nil then Tab:Activate() Library:_tween( Tab["2a"], { TextColor3 = Color3.fromRGB(50, 255, 67) } ) end function Tab:Button(options: table) options = Library:_validate({ Name = (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(11,'77,128,127,127,122,121'), Callback = function(...) end }, options or {}) local Button = { Hover = false, MouseDown = false } do Button["8"] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(1,'71,115,98,110,102'), Tab["5"]); Button["8"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(9,'75,120,123,109,110,123,92,114,131,110,89,114,129,110,117')] = 0; Button["8"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(11,'77,108,110,118,114,125,122,128,121,111,78,122,119,122,125,62')] = Color3.fromRGB(26, 26, 26); Button["8"]["Size"] = UDim2.new(0, 350, 0, 30); Button["8"]["Position"] = UDim2.new(0, 0, 0.08696, 0); Button["8"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(3,'69,114,117,103,104,117,70,114,111,114,117,54')] = Color3.fromRGB(0, 0, 0); Button["8"]["Name"] = [[button]]; Button["9"] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(18,'102,119,138,134,84,135,134,134,129,128'), Button["8"]); Button["9"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(24,'90,135,138,124,125,138,107,129,146,125,104,129,144,125,132')] = 0; Button["9"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(13,'97,114,133,129,101,78,121,118,116,123,122,114,123,129')] = Enum.TextXAlignment.Left; Button["9"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(13,'97,114,133,129,96,118,135,114')] = 14; Button["9"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(17,'101,118,137,133,84,128,125,128,131,68')] = Color3.fromRGB(228, 228, 228); Button["9"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(20,'86,117,119,127,123,134,131,137,130,120,87,131,128,131,134,71')] = Color3.fromRGB(27, 27, 27); Button["9"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(15,'85,126,125,131,85,112,114,116')] = Font.new([[rbxasset://fonts/families/RobotoMono.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal); Button["9"]["Size"] = UDim2.new(0, 333, 0, 22); Button["9"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(13,'79,110,112,120,116,127,124,130,123,113,97,127,110,123,128,125,110,127,114,123,112,134')] = 1; Button["9"]["Name"] = [[click]]; Button["9"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(7,'73,118,121,107,108,121,74,118,115,118,121,58')] = Color3.fromRGB(0, 0, 0); Button["9"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(15,'99,116,135,131')] = typeof(options["Name"] == (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(20,'135,136,134,125,130,123')) and options["Name"] or (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(16,'105,127,133,48,125,133,131,132,48,128,113,131,131,48,113,48,131,132,130,48,132,127,48,114,133,132,132,127,126,49') Button["9"]["Position"] = UDim2.new(0.5, -166, 0.5, -11); Button["a"] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(18,'91,127,115,121,119,94,115,116,119,126'), Button["9"]); Button["a"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(12,'85,121,109,115,113')] = [[rbxassetid://12974400739]]; Button["a"]["Size"] = UDim2.new(0, 18, 0, 18); Button["a"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(5,'71,102,104,112,108,119,116,122,115,105,89,119,102,115,120,117,102,119,106,115,104,126')] = 1; Button["a"]["Name"] = [[icon]]; Button["a"]["Position"] = UDim2.new(1, -18, 0.5, -9); Button["b"] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(6,'91,79,73,117,120,116,107,120'), Button["8"]); Button["b"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(17,'84,128,131,127,118,131,99,114,117,122,134,132')] = UDim.new(0, 2); Button["c"] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(22,'107,95,105,138,136,133,129,123'), Button["8"]); Button["c"]["Transparency"] = 0.8; Button["c"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(13,'78,125,125,121,134,96,129,127,124,120,114,90,124,113,114')] = Enum.ApplyStrokeMode.Border; Button["c"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(18,'94,123,128,119,92,129,123,128,95,129,118,119')] = Enum.LineJoinMode.Bevel; Button["c"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(20,'104,124,125,119,127,130,121,135,135')] = 0.6; Button["c"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(20,'87,131,128,131,134')] = Color3.fromRGB(100, 100, 100); end function Button:SetText(text: string) assert(text, string.format("[ gamesense ] [ button_%s ] text is required", options["Name"])) assert(type(text) == (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(6,'121,122,120,111,116,109'), string.format("[ gamesense ] [ button_%s ] text must be a string", options["Name"])) Button["9"].Text = text options["Name"] = text end function Button:SetCallback(fn) if fn ~= nil then assert(typeof(fn) == (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(24,'126,141,134,123,140,129,135,134'), string.format("[ gamesense ] [ button_%s ] callback must be either nil or a function", options.Name)) end options[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(11,'78,108,119,119,109,108,110,118')] = fn end do Button["8"].MouseEnter:Connect(function() Button.Hover = true Library:_tween( Button["a"], { ImageColor3 = Color3.fromRGB(50, 255, 67) } ) Library:_tween( Button["9"], { TextColor3 = Color3.fromRGB(50, 255, 67) } ) end) Button["8"].MouseLeave:Connect(function() Button.Hover = false if not Button.MouseDown then Library:_tween( Button["a"], { ImageColor3 = Color3.fromRGB(255, 255, 255) } ) Library:_tween( Button["9"], { TextColor3 = Color3.fromRGB(227, 277, 277) } ) end end) Button["9"].MouseButton1Down:Connect(function() Button.MouseDown = true Library:_tween( Button["8"], { BackgroundColor3 = Color3.fromRGB(39, 39, 39) } ) local _0xbf9fa4,r = pcall(options[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(12,'79,109,120,120,110,109,111,119')]) if not _0xbf9fa4 then Library:Notify({ Description = string.format("(%_0xbf9fa4) Error on button callback, check console for more details", options.Name), Duration = 5 }) warn(string.format("[ gamesense.lua ] [ %_0xbf9fa4 - %_0xbf9fa4 ] Error on button callback: %s", options.Name, _internal_gettime(), r)) end end) Button["9"].MouseButton1Up:Connect(function() Button.MouseDown = false if Button.Hover then Library:_tween( Button["8"], { BackgroundColor3 = Color3.fromRGB(26, 26, 26) } ) Library:_tween( Button["a"], { ImageColor3 = Color3.fromRGB(50, 255, 67) } ) Library:_tween( Button["9"], { TextColor3 = Color3.fromRGB(50, 255, 67) } ) else Library:_tween( Button["8"], { BackgroundColor3 = Color3.fromRGB(26, 26, 26) } ) end end) end return Button end function Tab:Label(options: table) options = Library:_validate({ Message = (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(19,'103,123,124,134,51,124,134,51,116,129,51,120,139,116,128,131,127,120,51,127,116,117,120,127,65') }, options or {}) local Label = {} do Label["7"] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(5,'89,106,125,121,81,102,103,106,113'), Tab["5"]); Label["7"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(21,'87,132,135,121,122,135,104,126,143,122,101,126,141,122,129')] = 0; Label["7"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(9,'93,110,129,125,97,74,117,114,112,119,118,110,119,125')] = Enum.TextXAlignment.Left; Label["7"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(5,'71,102,104,112,108,119,116,122,115,105,72,116,113,116,119,56')] = Color3.fromRGB(27, 27, 27); Label["7"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(11,'95,112,131,127,94,116,133,112')] = 14; Label["7"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(7,'77,118,117,123,77,104,106,108')] = Font.new([[rbxasset://fonts/families/RobotoMono.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal); Label["7"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(14,'98,115,134,130,81,125,122,125,128,65')] = Color3.fromRGB(136, 136, 136); Label["7"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(22,'88,119,121,129,125,136,133,139,132,122,106,136,119,132,137,134,119,136,123,132,121,143')] = 1; Label["7"]["Size"] = UDim2.new(0, 200, 0, 26); Label["7"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(6,'72,117,120,106,107,120,73,117,114,117,120,57')] = Color3.fromRGB(0, 0, 0); Label["7"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(19,'103,120,139,135')] = typeof(options[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(14,'91,115,129,129,111,117,115')]) == (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(21,'136,137,135,126,131,124') and options[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(11,'88,112,126,126,108,114,112')] or (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(10,'99,121,127,42,119,127,125,126,42,122,107,125,125,42,107,42,125,126,124,115,120,113,42,126,121,42,126,114,111,42,118,107,108,111,118,43') Label["7"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(17,'99,122,116,121,101,118,137,133')] = true; Label["7"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(3,'87,104,123,119,90,117,100,115,115,104,103')] = true; Label["7"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(22,'87,139,138,133,131,119,138,127,121,105,127,144,123')] = Enum.AutomaticSize.XY; Label["7"]["Name"] = [[label]]; Label["7"]["Position"] = UDim2.new(0.03947, 0, 0.20455, 0); options[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(19,'90,104,92,87')] = game:GetService("HttpService"):GenerateGUID() end function Label:SetText(text: string) assert(text, string.format("[ gamesense ] [ label_%_0xbf9fa4 ] text is required", options[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(13,'84,98,86,81')])) assert(type(text) == (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(20,'135,136,134,125,130,123'), string.format("[ gamesense ] [ label_%_0xbf9fa4 ] text must be a string", options[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(2,'73,87,75,70')])) options[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(16,'93,117,131,131,113,119,117')] = text Label:_update() end function Label:_update() Label["7"].Text = options.Message end end function Tab:Slider(options: table) options = Library:_validate({ Name = (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(6,'89,114,111,106,107,120'), Min = 0, Max = 100, Default = 50, Step = 1, Callback = function(v) print(v) end }, options or {}) local Slider = { MouseDown = false, Hover = false, Connection = nil } do Slider["25"] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(13,'83,127,110,122,114'), Tab["5"]); Slider["25"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(20,'86,131,134,120,121,134,103,125,142,121,100,125,140,121,128')] = 0; Slider["25"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(4,'70,101,103,111,107,118,115,121,114,104,71,115,112,115,118,55')] = Color3.fromRGB(26, 26, 26); Slider["25"]["Size"] = UDim2.new(0, 350, 0, 43); Slider["25"]["Position"] = UDim2.new(0, 0, 0.85778, 0); Slider["25"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(17,'83,128,131,117,118,131,84,128,125,128,131,68')] = Color3.fromRGB(0, 0, 0); Slider["25"]["Name"] = [[slider]]; Slider["26"] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(21,'105,122,141,137,87,138,137,137,132,131'), Slider["25"]); Slider["26"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(14,'80,125,128,114,115,128,97,119,136,115,94,119,134,115,122')] = 0; Slider["26"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(23,'107,124,143,139,111,88,131,128,126,133,132,124,133,139')] = Enum.TextXAlignment.Left; Slider["26"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(1,'85,102,121,117,84,106,123,102')] = 14; Slider["26"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(19,'103,120,139,135,86,130,127,130,133,70')] = Color3.fromRGB(228, 228, 228); Slider["26"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(14,'80,111,113,121,117,128,125,131,124,114,81,125,122,125,128,65')] = Color3.fromRGB(27, 27, 27); Slider["26"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(19,'89,130,129,135,89,116,118,120')] = Font.new([[rbxasset://fonts/families/RobotoMono.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal); Slider["26"]["Size"] = UDim2.new(0, 333, 0, 22); Slider["26"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(25,'91,122,124,132,128,139,136,142,135,125,109,139,122,135,140,137,122,139,126,135,124,146')] = 1; Slider["26"]["Name"] = [[click]]; Slider["26"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(2,'68,113,116,102,103,116,69,113,110,113,116,53')] = Color3.fromRGB(0, 0, 0); Slider["26"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(20,'104,121,140,136')] = typeof(options.Name) == (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(23,'138,139,137,128,133,126') and options.Name or (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(6,'95,117,123,38,115,123,121,122,38,118,103,121,121,38,103,38,121,122,120,111,116,109,38,122,117,38,122,110,107,38,121,114,111,106,107,120,39') Slider["26"]["Position"] = UDim2.new(0.5, -166, 0.24419, -11); Slider["27"] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(13,'97,114,133,129,79,130,129,129,124,123'), Slider["26"]); Slider["27"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(17,'83,128,131,117,118,131,100,122,139,118,97,122,137,118,125')] = 0; Slider["27"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(25,'109,126,145,141,113,90,133,130,128,135,134,126,135,141')] = Enum.TextXAlignment.Right; Slider["27"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(12,'78,109,111,119,115,126,123,129,122,112,79,123,120,123,126,63')] = Color3.fromRGB(255, 255, 255); Slider["27"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(10,'94,111,130,126,93,115,132,111')] = 14; Slider["27"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(5,'75,116,115,121,75,102,104,106')] = Font.new([[rbxasset://fonts/families/RobotoMono.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal); Slider["27"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(25,'109,126,145,141,92,136,133,136,139,76')] = Color3.fromRGB(228, 228, 228); Slider["27"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(15,'81,112,114,122,118,129,126,132,125,115,99,129,112,125,130,127,112,129,116,125,114,136')] = 1; Slider["27"]["Size"] = UDim2.new(0, 110, 0, 22); Slider["27"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(22,'88,133,136,122,123,136,89,133,130,133,136,73')] = Color3.fromRGB(0, 0, 0); Slider["27"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(9,'93,110,129,125')] = typeof(options.Default) == (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(10,'120,127,119,108,111,124') and tostring(options.Default) or "2" if typeof(options.Default) ~= (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(2,'112,119,111,100,103,116') then options.Default = 2 end Slider["27"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(6,'96,79,116,106,107,126')] = 2; Slider["27"]["Name"] = [[value]]; Slider["27"]["Position"] = UDim2.new(1.27027, -200, 0, 0); Slider["28"] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(10,'95,83,77,121,124,120,111,124'), Slider["25"]); Slider["28"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(12,'79,123,126,122,113,126,94,109,112,117,129,127')] = UDim.new(0, 2); Slider["29"] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(12,'97,85,95,128,126,123,119,113'), Slider["25"]); Slider["29"]["Transparency"] = 0.8; Slider["29"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(20,'85,132,132,128,141,103,136,134,131,127,121,97,131,120,121')] = Enum.ApplyStrokeMode.Border; Slider["29"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(2,'78,107,112,103,76,113,107,112,79,113,102,103')] = Enum.LineJoinMode.Bevel; Slider["29"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(19,'103,123,124,118,126,129,120,134,134')] = 0.6; Slider["29"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(13,'80,124,121,124,127')] = Color3.fromRGB(100, 100, 100); Slider["2a"] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(13,'83,127,110,122,114'), Slider["25"]); Slider["2a"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(12,'78,123,126,112,113,126,95,117,134,113,92,117,132,113,120')] = 0; Slider["2a"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(21,'87,118,120,128,124,135,132,138,131,121,88,132,129,132,135,72')] = Color3.fromRGB(41, 41, 41); Slider["2a"]["Size"] = UDim2.new(0, 333, 0, 7); Slider["2a"]["Position"] = UDim2.new(0.16857, -50, 0.77907, -6); Slider["2a"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(12,'78,123,126,112,113,126,79,123,120,123,126,63')] = Color3.fromRGB(0, 0, 0); Slider["2a"]["Name"] = [[SliderBG]]; Slider["2b"] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(12,'97,85,79,123,126,122,113,126'), Slider["2a"]); Slider["2c"] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(18,'102,119,138,134,84,135,134,134,129,128'), Slider["2a"]); Slider["2c"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(10,'76,121,124,110,111,124,93,115,132,111,90,115,130,111,118')] = 0; Slider["2c"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(3,'69,100,102,110,106,117,114,120,113,103,70,114,111,114,117,54')] = Color3.fromRGB(50, 255, 67); Slider["2c"]["Size"] = UDim2.new(0, 180, 0, 7); Slider["2c"]["Position"] = UDim2.new(0.5, -166, 0.35714, -3); Slider["2c"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(18,'84,129,132,118,119,132,85,129,126,129,132,69')] = Color3.fromRGB(0, 0, 0); Slider["2c"]["Name"] = [[Slider]]; Slider["2c"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(9,'93,110,129,125')] = [[]]; Slider["2d"] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(24,'109,97,91,135,138,134,125,138'), Slider["2c"]); end function Slider:SetValue(v: number) local step = options.Step if v == nil then local percentage = math.clamp( (MOUSE.X - Slider["2a"].AbsolutePosition.X) / Slider["2a"].AbsoluteSize.X, 0, 1 ) local _0x1e33e3 = ((options.Max - options.Min) * percentage) + options.Min local steppedValue = math.floor((_0x1e33e3 / step) + 0.5) * step local clampedValue = math.clamp(steppedValue, options.Min, options.Max) local stepString = tostring(step) local decimalMatch = stepString:match("%.(%d+)$") local _0xe2e0ca = decimalMatch and #decimalMatch or 0 local _0xdcff73 = "%." .. _0xe2e0ca .. "f" Slider["27"].Text = string.format(_0xdcff73, clampedValue) Slider["2c"].Size = UDim2.fromScale((clampedValue - options.Min) / (options.Max - options.Min), 1) else assert(v >= options.Min and v <= options.Max, string.format("[ gamesense ] [ slider_%_0xbf9fa4 ] value must be between %_0xbf9fa4 and %s", options.Name, options.Min, options.Max)) assert(typeof(v) == (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(20,'130,137,129,118,121,134'), (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(17,'108,49,120,114,126,118,132,118,127,132,118,49,110,49,108,49,132,125,122,117,118,131,112')..options["Name"]..(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(11,'43,104,43,129,108,119,128,112,43,120,128,126,127,43,109,112,43,108,43,121,128,120,109,112,125')) Slider["27"].Text = tostring(v) Slider["2c"].Size = UDim2.fromScale((v - options.Min) / (options.Max - options.Min), 1) end options.Callback(Slider:GetValue()) end function Slider:GetValue() return tonumber(Slider["27"].Text) end do Slider["2c"].MouseButton1Down:Connect(function() Slider.MouseDown = true if not Slider.Connection then Slider.Connection = s_runservice.RenderStepped:Connect(function() Slider:SetValue() end) end end) Slider["2c"].MouseButton1Up:Connect(function() Slider.MouseDown = false pcall(function() if Slider.Connection:Disconnect() then Slider.Connection:Disconnect() end end) Slider.Connection = nil end) Slider["27"].MouseButton1Down:Connect(function() Slider:SetValue(options[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(8,'76,109,110,105,125,116,124')]) end) end do Slider:SetValue(options[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(20,'88,121,122,117,137,128,136')]) end end function Tab:Toggle(options: table) options = Library:_validate({ Name = (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(5,'89,116,108,108,113,106'), State = false, Callback = function(v) print(v) end }, options or {}) local Toggle = { State = options[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(9,'92,125,106,125,110')] } do Toggle["18"] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(25,'95,139,122,134,126'), Tab["5"]); Toggle["18"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(25,'91,136,139,125,126,139,108,130,147,126,105,130,145,126,133')] = 0; Toggle["18"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(9,'75,106,108,116,112,123,120,126,119,109,76,120,117,120,123,60')] = Color3.fromRGB(26, 26, 26); Toggle["18"]["Size"] = UDim2.new(0, 350, 0, 30); Toggle["18"]["Position"] = UDim2.new(0, 0, 0.08696, 0); Toggle["18"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(5,'71,116,119,105,106,119,72,116,113,116,119,56')] = Color3.fromRGB(0, 0, 0); Toggle["18"]["Name"] = [[toggle]]; Toggle["19"] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(7,'91,108,127,123,73,124,123,123,118,117'), Toggle["18"]); Toggle["19"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(7,'73,118,121,107,108,121,90,112,129,108,87,112,127,108,115')] = 0; Toggle["19"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(25,'109,126,145,141,113,90,133,130,128,135,134,126,135,141')] = Enum.TextXAlignment.Left; Toggle["19"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(15,'99,116,135,131,98,120,137,116')] = 14; Toggle["19"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(18,'102,119,138,134,85,129,126,129,132,69')] = Color3.fromRGB(228, 228, 228); Toggle["19"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(21,'87,118,120,128,124,135,132,138,131,121,88,132,129,132,135,72')] = Color3.fromRGB(27, 27, 27); Toggle["19"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(21,'91,132,131,137,91,118,120,122')] = Font.new([[rbxasset://fonts/families/RobotoMono.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal); Toggle["19"]["Size"] = UDim2.new(0, 333, 0, 22); Toggle["19"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(5,'71,102,104,112,108,119,116,122,115,105,89,119,102,115,120,117,102,119,106,115,104,126')] = 1; Toggle["19"]["Name"] = [[click]]; Toggle["19"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(16,'82,127,130,116,117,130,83,127,124,127,130,67')] = Color3.fromRGB(0, 0, 0); Toggle["19"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(24,'108,125,144,140')] = typeof(options["Name"]) == (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(2,'117,118,116,107,112,105') and options["Name"] or (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(15,'104,126,132,47,124,132,130,131,47,127,112,130,130,47,112,47,130,131,129,120,125,118,47,131,126,47,131,119,116,47,131,126,118,118,123,116,48') Toggle["19"]["Position"] = UDim2.new(0.5, -166, 0.5, -11); Toggle["1a"] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(23,'93,137,120,132,124'), Toggle["19"]); Toggle["1a"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(3,'69,114,117,103,104,117,86,108,125,104,83,108,123,104,111')] = 0; Toggle["1a"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(2,'68,99,101,109,105,116,113,119,112,102,69,113,110,113,116,53')] = options[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(7,'90,123,104,123,108')] == true and Color3.fromRGB(28, 173, 26) or Color3.fromRGB(174, 23, 25) Toggle["1a"]["Size"] = UDim2.new(0, 18, 0, 18); Toggle["1a"]["Position"] = UDim2.new(1, -18, 0.5, -9); Toggle["1a"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(13,'79,124,127,113,114,127,80,124,121,124,127,64')] = Color3.fromRGB(0, 0, 0); Toggle["1a"]["Name"] = [[toggle]]; Toggle["1b"] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(20,'105,93,87,131,134,130,121,134'), Toggle["1a"]); Toggle["1b"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(12,'79,123,126,122,113,126,94,109,112,117,129,127')] = UDim.new(0, 2); Toggle["1c"] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(11,'96,84,78,122,125,121,112,125'), Toggle["18"]); Toggle["1c"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(2,'69,113,116,112,103,116,84,99,102,107,119,117')] = UDim.new(0, 2); Toggle["1d"] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(6,'91,79,89,122,120,117,113,107'), Toggle["18"]); Toggle["1d"]["Transparency"] = 0.8; Toggle["1d"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(22,'87,134,134,130,143,105,138,136,133,129,123,99,133,122,123')] = Enum.ApplyStrokeMode.Border; Toggle["1d"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(12,'88,117,122,113,86,123,117,122,89,123,112,113')] = Enum.LineJoinMode.Bevel; Toggle["1d"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(22,'106,126,127,121,129,132,123,137,137')] = 0.6; Toggle["1d"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(10,'77,121,118,121,124')] = Color3.fromRGB(100, 100, 100); end function Toggle:_update() if Toggle[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(25,'108,141,122,141,126')] == true then Library:_tween( Toggle["1a"], {BackgroundColor3 = Color3.fromRGB(28, 173, 26)} ) else Library:_tween( Toggle["1a"], {BackgroundColor3 = Color3.fromRGB(174, 23, 25)} ) end end function Toggle:SetValue(bool: boolean) assert(typeof(bool) == (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(14,'112,125,125,122,115,111,124'), (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(20,'104,131,123,123,128,121,78,103,121,136,106,117,128,137,121,52,129,137,135,136,52,118,121,52,132,117,135,135,121,120,52,117,52,118,131,131,128,121,117,130,66')) Toggle[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(24,'107,140,121,140,125')] = bool Toggle:_update() end function Toggle:GetValue() return Toggle[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(14,'97,130,111,130,115')] end do Toggle["19"].MouseButton1Down:Connect(function() Toggle[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(12,'95,128,109,128,113')] = not Toggle[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(17,'100,133,114,133,118')] Toggle:_update() options[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(14,'81,111,122,122,112,111,113,121')](Toggle:GetValue()) end) end end function Tab:Textbox(options: table) options = Library:_validate({ Placeholder = (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(10,'79,120,126,111,124,42,131,121,127,124,42,127,125,111,124,120,107,119,111,56,56,56'), Callback = function(v) print(v) end }, options or {}) local Textbox = {} do Textbox["12"] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(23,'93,137,120,132,124'), Tab["5"]); Textbox["12"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(7,'73,118,121,107,108,121,90,112,129,108,87,112,127,108,115')] = 0; Textbox["12"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(2,'68,99,101,109,105,116,113,119,112,102,69,113,110,113,116,53')] = Color3.fromRGB(26, 26, 26); Textbox["12"]["Size"] = UDim2.new(0, 350, 0, 30); Textbox["12"]["Position"] = UDim2.new(0, 0, 0.08696, 0); Textbox["12"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(16,'82,127,130,116,117,130,83,127,124,127,130,67')] = Color3.fromRGB(0, 0, 0); Textbox["12"]["Name"] = [[Textbox]]; Textbox["13"] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(14,'99,87,81,125,128,124,115,128'), Textbox["12"]); Textbox["13"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(22,'89,133,136,132,123,136,104,119,122,127,139,137')] = UDim.new(0, 2); Textbox["14"] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(4,'89,77,87,120,118,115,111,105'), Textbox["12"]); Textbox["14"]["Transparency"] = 0.8; Textbox["14"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(14,'79,126,126,122,135,97,130,128,125,121,115,91,125,114,115')] = Enum.ApplyStrokeMode.Border; Textbox["14"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(15,'91,120,125,116,89,126,120,125,92,126,115,116')] = Enum.LineJoinMode.Bevel; Textbox["14"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(6,'90,110,111,105,113,116,107,121,121')] = 0.6; Textbox["14"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(23,'90,134,131,134,137')] = Color3.fromRGB(100, 100, 100); Textbox["15"] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(4,'88,105,124,120,70,115,124'), Textbox["12"]); Textbox["15"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(25,'109,126,145,141,92,136,133,136,139,76')] = Color3.fromRGB(228, 228, 228); Textbox["15"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(13,'93,121,110,112,114,117,124,121,113,114,127,80,124,121,124,127,64')] = Color3.fromRGB(100, 100, 100); Textbox["15"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(10,'76,121,124,110,111,124,93,115,132,111,90,115,130,111,118')] = 0; Textbox["15"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(23,'107,124,143,139,111,88,131,128,126,133,132,124,133,139')] = Enum.TextXAlignment.Left; Textbox["15"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(9,'93,110,129,125,92,114,131,110')] = 14; Textbox["15"]["Name"] = [[input]]; Textbox["15"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(1,'67,98,100,108,104,115,112,118,111,101,68,112,109,112,115,52')] = Color3.fromRGB(255, 255, 255); Textbox["15"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(23,'93,134,133,139,93,120,122,124')] = Font.new([[rbxasset://fonts/families/RobotoMono.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal); Textbox["15"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(17,'97,125,114,116,118,121,128,125,117,118,131,101,118,137,133')] = typeof(options[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(1,'81,109,98,100,102,105,112,109,101,102,115')] == (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(10,'125,126,124,115,120,113')) and options[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(7,'87,115,104,106,108,111,118,115,107,108,121')] or (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(20,'93,130,119,131,134,134,121,119,136,52,132,128,117,119,121,124,131,128,120,121,134,52,132,117,135,135,121,120') Textbox["15"]["Size"] = UDim2.new(0, 315, 0, 30); Textbox["15"]["Position"] = UDim2.new(0.02571, 0, 0.83333, -25); Textbox["15"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(24,'90,135,138,124,125,138,91,135,132,135,138,75')] = Color3.fromRGB(0, 0, 0); Textbox["15"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(10,'94,111,130,126')] = [[]]; Textbox["15"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(24,'90,121,123,131,127,138,135,141,134,124,108,138,121,134,139,136,121,138,125,134,123,145')] = 1; Textbox["15"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(22,'89,130,123,119,136,106,123,142,138,101,132,92,133,121,139,137')] = false; Textbox["16"] = Instance.new((function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(2,'75,111,99,105,103,78,99,100,103,110'), Textbox["12"]); Textbox["16"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(12,'85,121,109,115,113')] = [[rbxassetid://11422142913]]; Textbox["16"]["Size"] = UDim2.new(0, 18, 0, 18); Textbox["16"][(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(15,'81,112,114,122,118,129,126,132,125,115,99,129,112,125,130,127,112,129,116,125,114,136')] = 1; Textbox["16"]["Name"] = [[icon]]; Textbox["16"]["Position"] = UDim2.new(0.97714, -18, 0.5, -9); end function Textbox:SetValue(text: string) assert(text, string.format("[ gamesense ] [ Textbox_%_0xbf9fa4 ] text is required", options[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(17,'97,125,114,116,118,121,128,125,117,118,131')])) assert(type(text) == (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(18,'133,134,132,123,128,121'), string.format("[ gamessense ] [ Textbox_%_0xbf9fa4 ] text must be a string", options[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(3,'83,111,100,102,104,107,114,111,103,104,117')])) Textbox["15"].Text = tostring(text) end function Textbox:GetValue() return tostring(Textbox["15"].Text) end do Textbox["15"].FocusLost:Connect(function(ep, itcp) if not ep then return end options[(function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(19,'86,116,127,127,117,116,118,126')](Textbox:GetValue()) end) end end return Tab end Library:Notify({ Description = (function(k,d)local r=''for i in string.gmatch(d,'[^,]+')do r=r..string.char((tonumber(i)-k)%256)end return r end)(11,'82,108,120,112,126,112,121,126,112,57,119,128,108,43,115,108,126,43,109,112,112,121,43,119,122,108,111,112,111,57'), Duration = 5 }) return GUI end return Library
+--// Services
+local s_players      = game:GetService("Players")
+local s_tweenservice = game:GetService("TweenService")
+local s_runservice   = game:GetService("RunService")
+local s_coregui      = game:GetService("CoreGui")
+local s_uis          = game:GetService("UserInputService")
+
+--// Constants
+LOCALPLAYER = s_players.LocalPlayer
+MOUSE       = LOCALPLAYER:GetMouse()
+VIEWPORT    = workspace.CurrentCamera.ViewportSize
+TWEENINFO   = TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut)
+
+--// Internal
+function _internal_gettime()
+	local time = os.date("%H:%M:%S", os.time())
+	return time
+end
+function _internal_randomstr(len)
+	if not len then
+		len = 50
+	end
+	local sets = { { 97, 122 }, { 65, 90 }, { 48, 57 } } -- a-z, A-Z, 0-9
+	local str = ""
+	for i = 1, len do
+		math.randomseed(os.clock() ^ 5)
+		local charset = sets[math.random(1, #sets)]
+		str = str .. string.char(math.random(charset[1], charset[2]))
+	end
+	return str
+end
+
+--do
+local Converted = {
+	["_gamesense.lua"] = Instance.new("ScreenGui");
+	["_tick"] = Instance.new("LocalScript");
+	["_watermark"] = Instance.new("TextLabel");
+	["_sense"] = Instance.new("TextLabel");
+	["_notifs"] = Instance.new("Frame");
+	["_Template"] = Instance.new("Frame");
+	["_game"] = Instance.new("TextLabel");
+	["_sense1"] = Instance.new("TextLabel");
+	["_Description"] = Instance.new("TextLabel");
+	["_UIStroke"] = Instance.new("UIStroke");
+	["_timestamp"] = Instance.new("TextLabel");
+	["_UIListLayout"] = Instance.new("UIListLayout");
+	["_assets"] = Instance.new("Folder");
+	["_notif"] = Instance.new("Sound");
+}
+
+-- Properties:
+
+Converted["_gamesense.lua"].IgnoreGuiInset = true
+Converted["_gamesense.lua"].ScreenInsets = Enum.ScreenInsets.DeviceSafeInsets
+Converted["_gamesense.lua"].ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+Converted["_gamesense.lua"].Name = "gamesense_".._internal_randomstr(32)
+Converted["_gamesense.lua"].Parent = s_runservice:IsStudio() and s_players.LocalPlayer:WaitForChild("PlayerGui") or gethui() or s_coregui
+
+Converted["_watermark"].Font = Enum.Font.RobotoMono
+Converted["_watermark"].RichText = true
+Converted["_watermark"].Text = "<font color=\"#31ff42\">gamesense</font> | focat9123123 | 00:00:00"
+Converted["_watermark"].TextColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_watermark"].TextSize = 12
+Converted["_watermark"].AutomaticSize = Enum.AutomaticSize.XY
+Converted["_watermark"].BackgroundColor3 = Color3.fromRGB(26.000000350177288, 26.000000350177288, 26.000000350177288)
+Converted["_watermark"].BorderColor3 = Color3.fromRGB(99.00000169873238, 99.00000169873238, 99.00000169873238)
+Converted["_watermark"].Position = UDim2.new(0.973097622, -204, 0.0188679248, 0)
+Converted["_watermark"].Size = UDim2.new(0, 221, 0, 29)
+Converted["_watermark"].Name = "watermark"
+Converted["_watermark"].Parent = Converted["_gamesense.lua"]
+
+Converted["_sense"].Font = Enum.Font.RobotoMono
+Converted["_sense"].Text = "sense"
+Converted["_sense"].TextColor3 = Color3.fromRGB(49.000004678964615, 255, 66.00000366568565)
+Converted["_sense"].TextSize = 12
+Converted["_sense"].BackgroundColor3 = Color3.fromRGB(26.000000350177288, 26.000000350177288, 26.000000350177288)
+Converted["_sense"].BackgroundTransparency = 1
+Converted["_sense"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_sense"].BorderSizePixel = 0
+Converted["_sense"].Position = UDim2.new(0.25, -100, 0.49000001, -13)
+Converted["_sense"].Size = UDim2.new(0, 200, 0, 26)
+Converted["_sense"].Name = "sense"
+Converted["_sense"].Parent = Converted["_watermark bg"]
+
+Converted["_notifs"].AnchorPoint = Vector2.new(1, 1)
+Converted["_notifs"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_notifs"].BackgroundTransparency = 1
+Converted["_notifs"].BorderColor3 = Color3.fromRGB(27.000002190470695, 42.000001296401024, 53.000004440546036)
+Converted["_notifs"].BorderSizePixel = 0
+Converted["_notifs"].ClipsDescendants = true
+Converted["_notifs"].Position = UDim2.new(1, -25, 1, -25)
+Converted["_notifs"].Size = UDim2.new(0, 296, 0, 578)
+Converted["_notifs"].ZIndex = 5
+Converted["_notifs"].Name = "notifs"
+Converted["_notifs"].Parent = Converted["_gamesense.lua"]
+
+Converted["_Template"].AnchorPoint = Vector2.new(0.5, 0.5)
+Converted["_Template"].BackgroundColor3 = Color3.fromRGB(21.000000648200512, 21.000000648200512, 20.000000707805157)
+Converted["_Template"].BorderColor3 = Color3.fromRGB(99.00000169873238, 99.00000169873238, 99.00000169873238)
+Converted["_Template"].BorderMode = Enum.BorderMode.Middle
+Converted["_Template"].BorderSizePixel = 0
+Converted["_Template"].Position = UDim2.new(0.498310804, 0, 0.912629783, 0)
+Converted["_Template"].Size = UDim2.new(0, 295, 0, 91)
+Converted["_Template"].Visible = false
+Converted["_Template"].ZIndex = 100
+Converted["_Template"].Name = "Template"
+Converted["_Template"].Parent = Converted["_notifs"]
+
+Converted["_game"].Font = Enum.Font.RobotoMono
+Converted["_game"].Text = "game<font color=\"#31ff42\">sense</font>"
+Converted["_game"].TextColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_game"].TextSize = 18
+Converted["_game"].TextXAlignment = Enum.TextXAlignment.Left
+Converted["_game"].BackgroundColor3 = Color3.fromRGB(26.000000350177288, 26.000000350177288, 26.000000350177288)
+Converted["_game"].BackgroundTransparency = 1
+Converted["_game"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_game"].BorderSizePixel = 0
+Converted["_game"].Position = UDim2.new(0.398305088, -100, 0.225274727, -13)
+Converted["_game"].Size = UDim2.new(0, 200, 0, 26)
+Converted["_game"].Name = "game"
+Converted["_game"].Parent = Converted["_Template"]
+Converted["_game"].RichText = true
+
+Converted["_Description"].Font = Enum.Font.RobotoMono
+Converted["_Description"].Text = "hey you're a bitch lol 123213123123123123"
+Converted["_Description"].TextColor3 = Color3.fromRGB(168.0000051856041, 168.0000051856041, 168.0000051856041)
+Converted["_Description"].TextSize = 14
+Converted["_Description"].TextWrapped = true
+Converted["_Description"].TextXAlignment = Enum.TextXAlignment.Left
+Converted["_Description"].TextYAlignment = Enum.TextYAlignment.Top
+Converted["_Description"].BackgroundColor3 = Color3.fromRGB(26.000000350177288, 26.000000350177288, 26.000000350177288)
+Converted["_Description"].BackgroundTransparency = 1
+Converted["_Description"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_Description"].BorderSizePixel = 0
+Converted["_Description"].Position = UDim2.new(0.398305088, -100, 0.5, -13)
+Converted["_Description"].Size = UDim2.new(0, 262, 0, 38)
+Converted["_Description"].Name = "Description"
+Converted["_Description"].Parent = Converted["_Template"]
+
+Converted["_UIStroke"].ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+Converted["_UIStroke"].Color = Color3.fromRGB(99.00000169873238, 99.00000169873238, 99.00000169873238)
+Converted["_UIStroke"].LineJoinMode = Enum.LineJoinMode.Bevel
+Converted["_UIStroke"].Parent = Converted["_Template"]
+
+Converted["_timestamp"].Font = Enum.Font.RobotoMono
+Converted["_timestamp"].Text = "00:00:00"
+Converted["_timestamp"].TextColor3 = Color3.fromRGB(168.0000051856041, 168.0000051856041, 168.0000051856041)
+Converted["_timestamp"].TextSize = 12
+Converted["_timestamp"].TextWrapped = true
+Converted["_timestamp"].TextXAlignment = Enum.TextXAlignment.Right
+Converted["_timestamp"].BackgroundColor3 = Color3.fromRGB(26.000000350177288, 26.000000350177288, 26.000000350177288)
+Converted["_timestamp"].BackgroundTransparency = 1
+Converted["_timestamp"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_timestamp"].BorderSizePixel = 0
+Converted["_timestamp"].Position = UDim2.new(0.564406753, -100, 0.917582393, -13)
+Converted["_timestamp"].Size = UDim2.new(0, 215, 0, 13)
+Converted["_timestamp"].Name = "timestamp"
+Converted["_timestamp"].Parent = Converted["_Template"]
+
+Converted["_UIListLayout"].Padding = UDim.new(0, 6)
+Converted["_UIListLayout"].HorizontalAlignment = Enum.HorizontalAlignment.Right
+Converted["_UIListLayout"].SortOrder = Enum.SortOrder.LayoutOrder
+Converted["_UIListLayout"].VerticalAlignment = Enum.VerticalAlignment.Bottom
+Converted["_UIListLayout"].Parent = Converted["_notifs"]
+
+Converted["_assets"].Name = "assets"
+Converted["_assets"].Parent = Converted["_notifs"]
+
+Converted["_notif"].RollOffMode = Enum.RollOffMode.InverseTapered
+Converted["_notif"].SoundId = "rbxassetid://131303727931519"
+Converted["_notif"].Name = "notif"
+Converted["_notif"].Parent = Converted["_assets"]
+
+---
+
+local notif_lib = {}
+
+baseNotif  = Converted["_Template"]
+notifSound = Converted["_notif"]
+
+function tween(go, t, dir)
+	dir = dir or "in"
+	local obj = go
+
+	local startTransparency = (dir == "in") and 1 or 0
+	local endTransparency = (dir == "in") and 0 or 1
+
+	obj.BackgroundTransparency = startTransparency
+
+	local tweenInfo = TweenInfo.new(t, Enum.EasingStyle.Quint, Enum.EasingDirection.Out, 0, false, 0)
+
+	local tween = game:GetService("TweenService"):Create(obj, tweenInfo, {
+		BackgroundTransparency = endTransparency
+	})
+	tween:Play()
+
+	if dir == "out" then
+		for _, e in pairs(obj:GetDescendants()) do
+			if e:IsA("GuiObject") then
+				if e:IsA("TextLabel") then
+					local texttween = game:GetService("TweenService"):Create(e, tweenInfo, {
+						TextTransparency = endTransparency
+					})
+					texttween:Play()
+				elseif e:IsA("ImageLabel") or e:IsA("ImageButton") then
+					local imgt = game:GetService("TweenService"):Create(e, tweenInfo, {
+						ImageTransparency = endTransparency
+					})
+					imgt:Play()
+				elseif e:IsA("UIStroke") then
+					local st = game:GetService("TweenService"):Create(e, tweenInfo, {
+						Transparency = endTransparency
+					})
+					st:Play()
+				end
+			end
+		end
+	end
+end
+
+function notif_lib:MakeNotification(notif_table: table)
+	local text = notif_table.Description or "This is an example notification!"
+	local dur = notif_table.Duration or 5
+
+	local newNotif = baseNotif:Clone()
+	newNotif.Parent = Converted["_notifs"]
+	newNotif.Description.Text = text
+	newNotif.timestamp.Text = _internal_gettime()
+	newNotif.Visible = true
+	newNotif.Name = "gamesense.lua - ".._internal_randomstr(8)
+
+	local holder = Converted["_notifs"]
+	local notifications = holder:GetChildren()
+	local numNotifications = #notifications
+
+	local layout = holder.UIListLayout
+	local layoutOrder = layout.Padding.Offset
+
+	for i, notification in ipairs(notifications) do
+		if notification ~= baseNotif and
+			notification ~= newNotif and
+			notification ~= layout and
+			notification:IsA("Frame")
+		then
+			if numNotifications == 1 then
+				layoutOrder = layoutOrder - 1
+			else
+				layoutOrder = notification.LayoutOrder + 1
+			end
+			tween(notification, 0.25)
+		end
+	end
+
+	newNotif.LayoutOrder = layoutOrder
+
+	notifSound:Play()
+	tween(newNotif, 0.5, "in")
+
+	spawn(function()
+		wait(dur)
+		tween(newNotif, 0.5, "out")
+		wait(0.5)
+		newNotif:Destroy()
+	end)
+end
+
+local function _watermark_tick()
+	--// gamesense.lua
+	--// tick - manage tick / sec
+	--// author: @focat
+
+	---
+
+	local env = {}
+	env["_internal"] = {} -- initalization
+
+	-- gamesense->watermark
+
+	local watermark_gui  = script.Parent
+	local watermark_text = Converted["_watermark"]
+	local s_players      = game:GetService("Players")
+	local s_runservice   = game:GetService("RunService")
+	local heartbeat      = s_runservice.Heartbeat
+	local localplayer    = s_players.LocalPlayer
+	local displayname    = localplayer.DisplayName
+
+	---
+
+	--// self explanitory
+	env["_internal"]["get_time"] = function()
+		local time = os.date("%H:%M:%S", os.time())
+		return time
+	end
+	env["_internal"]["update_watermark"] = function()
+		local time = env["_internal"]["get_time"]()
+		watermark_text.Text = string.format("<font color=\"#31ff42\">gamesense</font> | %s | %s", displayname, time)
+	end
+
+	---
+
+	--// heartbeat loop
+	heartbeat:Connect(function()
+		-- watermark
+		env["_internal"]["update_watermark"]()
+
+		---
+
+		-- soon:tm:
+		-- memory
+		-- ping
+		-- fps
+	end)
+
+	print(string.format("[ gamesense.lua ] [ %s ] tick service connected", env["_internal"]["get_time"]()))
+end
+coroutine.wrap(_watermark_tick)()
+--end
+
+local Library = {}
+
+function Library:_validate(defaults: table, options: table)
+	for option, value in pairs(defaults) do
+		if options[option] == nil then
+			options[option] = value
+		end
+	end
+	return options
+end
+function Library:_tween(object, goal, callback)
+	local tween = s_tweenservice:Create(object, TWEENINFO, goal)
+	tween.Completed:Connect(callback or function() end)
+	tween:Play()
+end
+
+function Library:Notify(options: table)
+	local NOTIF_OPTIONS = Library:_validate({
+		Description = "This is an example notification!",
+		Duration = 5
+	}, options or {})
+	
+	notif_lib:MakeNotification(NOTIF_OPTIONS)
+end
+
+function Library:New(options: table)
+	local GUI_OPTIONS = Library:_validate({
+		Name = "gamesense.lua",
+		Padding = 6
+	}, options or {})
+	
+	local GUI = {
+		CurrentTab = nil
+	}
+	
+	--// Initalization
+	do
+		-- StarterGui.ui lib
+		GUI["1"] = Instance.new("ScreenGui", s_runservice:IsStudio() and s_players.LocalPlayer:WaitForChild("PlayerGui") or gethui() or s_coregui)
+		GUI["1"]["IgnoreGuiInset"] = true;
+		GUI["1"]["ScreenInsets"] = Enum.ScreenInsets.DeviceSafeInsets;
+		GUI["1"]["Name"] = [[gamesense.lua]];
+		GUI["1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
+
+
+		-- StarterGui.ui lib.gamesense window
+		GUI["2"] = Instance.new("Frame", GUI["1"]);
+		GUI["2"]["BorderSizePixel"] = 2;
+		GUI["2"]["BackgroundColor3"] = Color3.fromRGB(22, 22, 21);
+		GUI["2"]["Size"] = UDim2.new(0, 380, 0, 436);
+		GUI["2"]["Position"] = UDim2.fromOffset(
+			(VIEWPORT.X / 2) - GUI["2"].Size.X.Offset / 2, 
+			(VIEWPORT.Y / 2) - GUI["2"].Size.Y.Offset / 2
+		)
+		GUI["2"]["BorderColor3"] = Color3.fromRGB(100, 100, 100);
+		GUI["2"]["Name"] = [[gamesense window]];
+	end
+	
+	--// Title bar (+ seperator)
+	do
+		-- StarterGui.ui lib.gamesense window.sep
+		GUI["3"] = Instance.new("Frame", GUI["2"]);
+		GUI["3"]["BorderSizePixel"] = 0;
+		GUI["3"]["BackgroundColor3"] = Color3.fromRGB(54, 54, 54);
+		GUI["3"]["Size"] = UDim2.new(1, 0, 0, 1);
+		GUI["3"]["Position"] = UDim2.new(0, 0, 0.10092, 0);
+		GUI["3"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+		GUI["3"]["Name"] = [[sep]];
+		
+		-- StarterGui.ui lib.gamesense window.titlebar
+		GUI["3a"] = Instance.new("Frame", GUI["2"]);
+		GUI["3a"]["BorderSizePixel"] = 0;
+		GUI["3a"]["BackgroundColor3"] = Color3.fromRGB(94, 94, 94);
+		GUI["3a"]["Size"] = UDim2.new(0, 380, 0, 44);
+		GUI["3a"]["Position"] = UDim2.new(0.5, -190, 0, 0);
+		GUI["3a"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+		GUI["3a"]["Name"] = [[titlebar]];
+		GUI["3a"]["BackgroundTransparency"] = 0.9;
+		
+		--// starts with "gamesense"?
+		if string.sub(options["Name"], 1, 9) == "gamesense" then
+			--// Green "sense" in "gamesense.lua"
+			--GUI["3b"] = Instance.new("TextLabel", GUI["3a"]);
+			--GUI["3b"]["ZIndex"] = 2;
+			--GUI["3b"]["BorderSizePixel"] = 0;
+			--GUI["3b"]["TextXAlignment"] = Enum.TextXAlignment.Left;
+			--GUI["3b"]["BackgroundColor3"] = Color3.fromRGB(27, 27, 27);
+			--GUI["3b"]["TextSize"] = 18;
+			--GUI["3b"]["FontFace"] = Font.new([[rbxasset://fonts/families/RobotoMono.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+			--GUI["3b"]["TextColor3"] = Color3.fromRGB(50, 255, 67);
+			--GUI["3b"]["BackgroundTransparency"] = 1;
+			--GUI["3b"]["Size"] = UDim2.new(0, 200, 0, 25);
+			--GUI["3b"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+			--GUI["3b"]["Text"] = [[sense]];
+			--GUI["3b"]["Name"] = [[sense]];
+			--GUI["3b"]["Position"] = UDim2.new(0.12368, 0, 0.22727, 0);
+			--// replace "gamesense" with "game<font color=\"#31ff42\">sense</font>"
+			options["Name"] = string.gsub(options["Name"], "gamesense", "game<font color=\"#31ff42\">sense</font>");
+		end
+		
+		-- StarterGui.ui lib.gamesense window.titlebar.gamesense.lua
+		GUI["3c"] = Instance.new("TextLabel", GUI["3a"]);
+		GUI["3c"]["BorderSizePixel"] = 0;
+		GUI["3c"]["TextXAlignment"] = Enum.TextXAlignment.Left;
+		GUI["3c"]["BackgroundColor3"] = Color3.fromRGB(27, 27, 27);
+		GUI["3c"]["TextSize"] = 18;
+		GUI["3c"]["FontFace"] = Font.new([[rbxasset://fonts/families/RobotoMono.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+		GUI["3c"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+		GUI["3c"]["BackgroundTransparency"] = 1;
+		GUI["3c"]["Size"] = UDim2.new(0, 200, 0, 26);
+		GUI["3c"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+		GUI["3c"]["Text"] = typeof(options["Name"] == "string") and options["Name"] or "game<font color=\"#31ff42\">sense</font>.lua";
+		GUI["3c"]["Name"] = "gamesense_".._internal_randomstr(32)
+		GUI["3c"]["Position"] = UDim2.new(0.03947, 0, 0.20455, 0);
+		GUI["3c"]["RichText"] = true
+
+
+		-- StarterGui.ui lib.gamesense window.titlebar.ImageLabel (Close button)
+		GUI["3d"] = Instance.new("ImageButton", GUI["3a"]);
+		GUI["3d"]["Image"] = [[rbxassetid://11293981586]];
+		GUI["3d"]["Size"] = UDim2.new(0, 18, 0, 18);
+		GUI["3d"]["BackgroundTransparency"] = 1;
+		GUI["3d"]["Position"] = UDim2.new(0.96053, -18, 0.5, -9);
+	end
+	
+	--// Handle close button (minimize GUI, wait for key press, bring back)
+	do
+		GUI["3d"].MouseButton1Click:Connect(function()
+			GUI["2"].Visible = false
+			Library:Notify({
+				Description = "You can re-open the menu anytime by pressing \"Right-Control\".",
+				Duration = 5
+			})
+		end)
+		
+		--// Wait for UIS
+		s_uis.InputBegan:Connect(function(input, gpe)
+			if gpe then return end
+			
+			if input.KeyCode == Enum.KeyCode.RightControl then
+				if not GUI["2"].Visible then
+					GUI["2"].Visible = true
+				else 
+					GUI["2"].Visible = false
+				end
+			end
+		end)
+	end
+	
+	--// Make GUI draggable from title bar
+	do
+		local dragging  = nil
+		local dragInput = nil
+		local dragStart = nil
+		local startPos  = nil
+
+		local function updateInput(input)
+			local delta = input.Position - dragStart
+			GUI["2"].Position = UDim2.new(
+				startPos.X.Scale,
+				startPos.X.Offset + delta.X,
+				startPos.Y.Scale,
+				startPos.Y.Offset + delta.Y
+			)
+		end
+
+		local TitleBar = {
+			Hover = false
+		}
+
+		GUI["3a"].MouseEnter:Connect(function()
+			TitleBar.Hover = true
+		end)
+		GUI["3a"].MouseLeave:Connect(function()
+			TitleBar.Hover = false
+		end)
+		s_uis.InputBegan:Connect(function(input, gpe)
+			if gpe then return end
+
+			if input.UserInputType == Enum.UserInputType.MouseButton1 then
+				if TitleBar.Hover then
+					dragging = true
+					dragStart = input.Position
+					startPos = GUI["2"].Position
+				end
+			end
+		end)
+		s_uis.InputChanged:Connect(function(input, gpe)
+			if gpe then return end
+
+			if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+				updateInput(input)
+			end
+		end)
+		s_uis.InputEnded:Connect(function(input, gpe)
+			if gpe then return end
+
+			if input.UserInputType == Enum.UserInputType.MouseButton1 then
+				dragging = false
+			end
+		end)
+	end
+	
+	--// GUI/Window Methods
+	do
+		function GUI:Destroy()
+			GUI["2"]:Destroy() --// yay
+		end
+	end
+	
+	--// Navigation
+	do
+		-- StarterGui.ui lib.gamesense window.tab selector
+		GUI["29"] = Instance.new("Frame", GUI["2"]);
+		GUI["29"]["BorderSizePixel"] = 0;
+		GUI["29"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+		GUI["29"]["Size"] = UDim2.new(0, 350, 0, 23);
+		GUI["29"]["Position"] = UDim2.new(0.03947, 0, 0.12844, 0);
+		GUI["29"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+		GUI["29"]["Name"] = [[tab selector]];
+		GUI["29"]["BackgroundTransparency"] = 1;
+
+		-- StarterGui.ui lib.gamesense window.tab selector.UIListLayout
+		GUI["2d"] = Instance.new("UIListLayout", GUI["29"]);
+		GUI["2d"]["Padding"] = UDim.new(0, 6);
+		GUI["2d"]["SortOrder"] = Enum.SortOrder.LayoutOrder;
+		GUI["2d"]["FillDirection"] = Enum.FillDirection.Horizontal;
+	end
+	
+	function GUI:CreateTab(options: table)
+		options = Library:_validate({
+			Name = "Tab"
+		}, options or {})
+		
+		local Tab = {
+			Hover = false,
+			Active = false
+		}
+		
+		--// Render
+		do
+			-- StarterGui.ui lib.gamesense window.tab selector.tab button
+			Tab["2a"] = Instance.new("TextButton", GUI["29"]);
+			Tab["2a"]["TextTruncate"] = Enum.TextTruncate.AtEnd;
+			Tab["2a"]["BorderSizePixel"] = 0;
+			Tab["2a"]["TextSize"] = 12;
+			Tab["2a"]["TextColor3"] = Color3.fromRGB(228, 228, 228);
+			Tab["2a"]["BackgroundColor3"] = Color3.fromRGB(26, 26, 26);
+			Tab["2a"]["FontFace"] = Font.new([[rbxasset://fonts/families/RobotoMono.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+			Tab["2a"]["Size"] = UDim2.new(0, 65, 0, 23);
+			Tab["2a"]["Name"] = [[tab button]];
+			Tab["2a"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+			Tab["2a"]["Text"] = typeof(options["Name"] == "string") and options["Name"] or "Tab"
+			Tab["2a"]["Position"] = UDim2.new(0, 0, 0.26087, -6);
+
+
+			-- StarterGui.ui lib.gamesense window.tab selector.tab button.UICorner
+			Tab["2b"] = Instance.new("UICorner", Tab["2a"]);
+			Tab["2b"]["CornerRadius"] = UDim.new(0, 2);
+
+
+			-- StarterGui.ui lib.gamesense window.tab selector.tab button.UIStroke
+			Tab["2c"] = Instance.new("UIStroke", Tab["2a"]);
+			Tab["2c"]["Transparency"] = 0.8;
+			Tab["2c"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+			Tab["2c"]["LineJoinMode"] = Enum.LineJoinMode.Bevel;
+			Tab["2c"]["Thickness"] = 0.6;
+			Tab["2c"]["Color"] = Color3.fromRGB(100, 100, 100);
+			
+			-- StarterTab.ui lib.gamesense window.tab
+			Tab["4"] = Instance.new("ScrollingFrame", GUI["2"]);
+			Tab["4"]["Active"] = true;
+			Tab["4"]["BorderSizePixel"] = 0;
+			Tab["4"]["CanvasSize"] = UDim2.new(0, 0, 1, 0);
+			Tab["4"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+			Tab["4"]["Name"] = [[tab]];
+			Tab["4"]["AutomaticCanvasSize"] = Enum.AutomaticSize.Y;
+			Tab["4"]["Size"] = UDim2.new(0, 380, 0, 355);
+			Tab["4"]["ScrollBarImageColor3"] = Color3.fromRGB(21, 87, 50);
+			Tab["4"]["Position"] = UDim2.new(0, 0, 0.18578, 0);
+			Tab["4"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+			Tab["4"]["ScrollBarThickness"] = 8;
+			Tab["4"]["BackgroundTransparency"] = 1;
+			Tab["4"]["Visible"] = false;
+
+
+			-- StarterTab.ui lib.gamesense window.tab.content
+			Tab["5"] = Instance.new("Frame", Tab["4"]);
+			Tab["5"]["BorderSizePixel"] = 0;
+			Tab["5"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+			Tab["5"]["Size"] = UDim2.new(0, 350, 0, 450);
+			Tab["5"]["Position"] = UDim2.new(0.5, -175, 0.51876, -180);
+			Tab["5"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+			Tab["5"]["Name"] = [[content]];
+			Tab["5"]["BackgroundTransparency"] = 1;
+
+
+			-- StarterTab.ui lib.gamesense window.tab.content.UIListLayout
+			Tab["6"] = Instance.new("UIListLayout", Tab["5"]);
+			Tab["6"]["Padding"] = UDim.new(0, GUI_OPTIONS["Padding"])
+			Tab["6"]["SortOrder"] = Enum.SortOrder.LayoutOrder;
+		end
+		
+		--// Methods
+		do
+			function Tab:Activate()
+				if not Tab.Active then
+					if GUI.CurrentTab ~= nil then
+						GUI.CurrentTab:Deactivate()
+					end
+
+					Tab.Active = true
+					GUI.CurrentTab = Tab
+					Tab["4"].Visible = true
+				end
+			end
+			function Tab:Deactivate()
+				if Tab.Active then
+					Tab.Active = false
+					Tab.Hover = false
+					Tab["4"].Visible = false
+					Library:_tween(
+						Tab["2a"], 
+						{
+							TextColor3 = Color3.fromRGB(228, 228, 228)
+						}
+					)
+				end
+			end
+		end
+			
+		--// Logic
+		do
+			Tab["2a"].MouseEnter:Connect(function()
+				Tab.Hover = true
+				
+				if not Tab.Active then
+					Library:_tween(
+						Tab["2a"], 
+						{
+							TextColor3 = Color3.fromRGB(50, 255, 67)
+						}
+					)
+				end
+			end)
+			Tab["2a"].MouseLeave:Connect(function()
+				Tab.Hover = false
+				
+				if not Tab.Active then
+					Library:_tween(
+						Tab["2a"], 
+						{
+							TextColor3 = Color3.fromRGB(228, 228, 228)
+						}
+					)
+				end
+			end)
+			--// im retat (fuck u scrolling frame)
+			--s_uis.InputBegan:Connect(function(input, gpe)
+			--	if gpe then return end
+
+			--	if input.UserInputType == Enum.UserInputType.MouseButton1 then
+			--		print(Tab["2a"] .. " -> Hover: "..tostring(Tab.Hover))
+			--		print(Tab["2a"] .. " -> Active: "..tostring(Tab.Active))
+			--		if Tab.Hover then
+			--			Tab:Activate()
+			--			print("Current active tab: "..Tab["2a"].Text)
+			--		end
+			--	end
+			--end)
+			
+			Tab["2a"].MouseButton1Down:Connect(function()
+				Tab:Activate()
+				--print("Current active tab: "..Tab["2a"].Text)
+			end)
+		end
+		
+		if GUI.CurrentTab == nil then
+			Tab:Activate()
+			Library:_tween(
+				Tab["2a"], 
+				{
+					TextColor3 = Color3.fromRGB(50, 255, 67)
+				}
+			)
+		end
+		
+		--// Components
+		function Tab:Button(options: table)
+			options = Library:_validate({
+				Name = "Button",
+				Callback = function(...) end
+			}, options or {})
+			
+			local Button = {
+				Hover = false,
+				MouseDown = false
+			}
+			
+			--// Render
+			do
+				------------- BUTTON
+				-- StarterButton.ui lib.gamesense window.tab.content.button
+				Button["8"] = Instance.new("Frame", Tab["5"]);
+				Button["8"]["BorderSizePixel"] = 0;
+				Button["8"]["BackgroundColor3"] = Color3.fromRGB(26, 26, 26);
+				Button["8"]["Size"] = UDim2.new(0, 350, 0, 30);
+				Button["8"]["Position"] = UDim2.new(0, 0, 0.08696, 0);
+				Button["8"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+				Button["8"]["Name"] = [[button]];
+
+
+				-- StarterButton.ui lib.gamesense window.tab.content.button.click
+				Button["9"] = Instance.new("TextButton", Button["8"]);
+				Button["9"]["BorderSizePixel"] = 0;
+				Button["9"]["TextXAlignment"] = Enum.TextXAlignment.Left;
+				Button["9"]["TextSize"] = 14;
+				Button["9"]["TextColor3"] = Color3.fromRGB(228, 228, 228);
+				Button["9"]["BackgroundColor3"] = Color3.fromRGB(27, 27, 27);
+				Button["9"]["FontFace"] = Font.new([[rbxasset://fonts/families/RobotoMono.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+				Button["9"]["Size"] = UDim2.new(0, 333, 0, 22);
+				Button["9"]["BackgroundTransparency"] = 1;
+				Button["9"]["Name"] = [[click]];
+				Button["9"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+				Button["9"]["Text"] = typeof(options["Name"] == "string") and options["Name"] or "You must pass a str to button!"
+				Button["9"]["Position"] = UDim2.new(0.5, -166, 0.5, -11);
+
+
+				-- StarterButton.ui lib.gamesense window.tab.content.button.click.icon
+				Button["a"] = Instance.new("ImageLabel", Button["9"]);
+				Button["a"]["Image"] = [[rbxassetid://12974400739]];
+				Button["a"]["Size"] = UDim2.new(0, 18, 0, 18);
+				Button["a"]["BackgroundTransparency"] = 1;
+				Button["a"]["Name"] = [[icon]];
+				Button["a"]["Position"] = UDim2.new(1, -18, 0.5, -9);
+
+
+				-- StarterButton.ui lib.gamesense window.tab.content.button.UICorner
+				Button["b"] = Instance.new("UICorner", Button["8"]);
+				Button["b"]["CornerRadius"] = UDim.new(0, 2);
+
+
+				-- StarterButton.ui lib.gamesense window.tab.content.button.UIStroke
+				Button["c"] = Instance.new("UIStroke", Button["8"]);
+				Button["c"]["Transparency"] = 0.8;
+				Button["c"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+				Button["c"]["LineJoinMode"] = Enum.LineJoinMode.Bevel;
+				Button["c"]["Thickness"] = 0.6;
+				Button["c"]["Color"] = Color3.fromRGB(100, 100, 100);
+			end
+			
+			--// Methods
+			function Button:SetText(text: string)
+				assert(text, string.format("[ gamesense ] [ button_%s ] text is required", options["Name"]))
+				assert(type(text) == "string", string.format("[ gamesense ] [ button_%s ] text must be a string", options["Name"]))
+				
+				Button["9"].Text = text
+				options["Name"] = text
+			end
+			function Button:SetCallback(fn)
+				--// must be function or nil
+				if fn ~= nil then
+					assert(typeof(fn) == "function", string.format("[ gamesense ] [ button_%s ] callback must be either nil or a function", options.Name))
+				end
+				options["Callback"] = fn
+			end
+			
+			--// Logic
+			do
+				Button["8"].MouseEnter:Connect(function()
+					Button.Hover = true
+					Library:_tween(
+						Button["a"], 
+						{
+							ImageColor3 = Color3.fromRGB(50, 255, 67)
+						}
+					)
+					Library:_tween(
+						Button["9"], 
+						{
+							TextColor3 = Color3.fromRGB(50, 255, 67)
+						}
+					)
+				end)
+				
+				Button["8"].MouseLeave:Connect(function()
+					Button.Hover = false
+
+					if not Button.MouseDown then
+						Library:_tween(
+							Button["a"], 
+							{
+								ImageColor3 = Color3.fromRGB(255, 255, 255)
+							}
+						)
+						Library:_tween(
+							Button["9"], 
+							{
+								TextColor3 = Color3.fromRGB(227, 277, 277)
+							}
+						)
+					end
+				end)
+				
+				Button["9"].MouseButton1Down:Connect(function()
+					Button.MouseDown = true
+					Library:_tween(
+						Button["8"],
+						{
+							BackgroundColor3 = Color3.fromRGB(39, 39, 39)
+						}
+					)
+					--// Callback handle
+					local s,r = pcall(options["Callback"])
+					if not s then
+						Library:Notify({
+							Description = string.format("(%s) Error on button callback, check console for more details", options.Name),
+							Duration = 5
+						})
+						warn(string.format("[ gamesense.lua ] [ %s - %s ] Error on button callback: %s", options.Name, _internal_gettime(), r))
+					end
+				end)
+				Button["9"].MouseButton1Up:Connect(function()
+					Button.MouseDown = false
+					if Button.Hover then
+						--// Hover state
+						Library:_tween( --// Normal bg
+							Button["8"], 
+							{
+								BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+							}
+						)
+						Library:_tween( --// Colored icon
+							Button["a"],
+							{
+								ImageColor3 = Color3.fromRGB(50, 255, 67)
+							}
+						)
+						Library:_tween( --// Colored text
+							Button["9"], 
+							{
+								TextColor3 = Color3.fromRGB(50, 255, 67)
+							}
+						)
+					else
+						--// Reset
+						Library:_tween(
+							Button["8"],
+							{
+								BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+							}
+						)
+					end
+				end)
+				
+				--// frick u scrolling frame
+				--s_uis.InputBegan:Connect(function(input, gpe)
+				--	if gpe then return end
+					
+				--	if input.UserInputType == Enum.UserInputType.MouseButton1 and Button.Hover then
+				--		Button.MouseDown = true
+				--		Library:_tween(
+				--			Button["8"],
+				--			{
+				--				BackgroundColor3 = Color3.fromRGB(56, 56, 56)
+				--			}
+				--		)
+				--		print("Clicked!")
+				--	end
+				--end)
+				--s_uis.InputEnded:Connect(function(input, gpe)
+				--	if gpe then return end
+					
+				--	if input.UserInputType == Enum.UserInputType.MouseButton1 then
+				--		Button.MouseDown = false
+				--		if Button.Hover then
+				--			--// Hover state
+				--			Library:_tween( --// Normal bg
+				--				Button["8"], 
+				--				{
+				--					BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+				--				}
+				--			)
+				--			Library:_tween( --// Colored icon
+				--				Button["a"],
+				--				{
+				--					ImageColor3 = Color3.fromRGB(50, 255, 67)
+				--				}
+				--			)
+				--			Library:_tween( --// Colored text
+				--				Button["9"], 
+				--				{
+				--					TextColor3 = Color3.fromRGB(50, 255, 67)
+				--				}
+				--			)
+				--		else
+				--			--// Reset
+				--			Library:_tween(
+				--				Button["8"],
+				--				{
+				--					BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+				--				}
+				--			)
+				--		end
+				--	end
+				--end)
+			end
+			
+			return Button
+		end
+		
+		function Tab:Label(options: table)
+			options = Library:_validate({
+				Message = "This is an example label."	
+			}, options or {})
+			
+			local Label = {}
+			
+			--// Render
+			do
+				------------- LABEL
+				-- StarterLabel.ui lib.gamesense window.tab.content.label
+				Label["7"] = Instance.new("TextLabel", Tab["5"]);
+				Label["7"]["BorderSizePixel"] = 0;
+				Label["7"]["TextXAlignment"] = Enum.TextXAlignment.Left;
+				Label["7"]["BackgroundColor3"] = Color3.fromRGB(27, 27, 27);
+				Label["7"]["TextSize"] = 14;
+				Label["7"]["FontFace"] = Font.new([[rbxasset://fonts/families/RobotoMono.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+				Label["7"]["TextColor3"] = Color3.fromRGB(136, 136, 136);
+				Label["7"]["BackgroundTransparency"] = 1;
+				Label["7"]["Size"] = UDim2.new(0, 200, 0, 26);
+				Label["7"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+				Label["7"]["Text"] = typeof(options["Message"]) == "string" and options["Message"] or "You must pass a string to the label!"
+				Label["7"]["RichText"] = true;
+				Label["7"]["TextWrapped"] = true;
+				Label["7"]["AutomaticSize"] = Enum.AutomaticSize.XY; --// :pray:
+				--// Label["7"]["TextYAlignment"] = Enum.TextYAlignment.Top; --// we'll see abt this
+				Label["7"]["Name"] = [[label]];
+				Label["7"]["Position"] = UDim2.new(0.03947, 0, 0.20455, 0);
+				options["GUID"] = game:GetService("HttpService"):GenerateGUID()
+			end
+			
+			--// Methods
+			function Label:SetText(text: string)
+				assert(text, string.format("[ gamesense ] [ label_%s ] text is required", options["GUID"]))
+				assert(type(text) == "string", string.format("[ gamesense ] [ label_%s ] text must be a string", options["GUID"]))
+
+				options["Message"] = text
+				Label:_update()
+			end
+			function Label:_update()
+				Label["7"].Text = options.Message
+				
+				--// "automatic size" exists now stupid idiot focat! i hate myself!
+				--// Automatically resize
+				--Label["7"].Size = UDim2.new(
+				--	Label["7"].Size.X.Scale,
+				--	Label["7"].Size.X.Offset,
+				--	0,
+				--	math.huge
+				--)
+				--Label["7"].Size = UDim2.new(
+				--	Label["7"].Size.X.Scale,
+				--	Label["7"].Size.X.Offset,
+				--	0,
+				--	Label["7"].TextBounds.Y
+				--)
+			end
+		end
+		
+		function Tab:Slider(options: table)
+			options = Library:_validate({
+				Name = "Slider",
+				Min = 0,
+				Max = 100,
+				Default = 50,
+				Step = 1,
+				Callback = function(v) print(v) end
+			}, options or {})
+			
+			local Slider = {
+				MouseDown = false,
+				Hover = false,
+				Connection = nil
+			}
+			
+			--// Render
+			do
+				------------------- SLIDER
+				-- StarterGui.ui lib.gamesense window.tab.content.slider
+				Slider["25"] = Instance.new("Frame", Tab["5"]);
+				Slider["25"]["BorderSizePixel"] = 0;
+				Slider["25"]["BackgroundColor3"] = Color3.fromRGB(26, 26, 26);
+				Slider["25"]["Size"] = UDim2.new(0, 350, 0, 43);
+				Slider["25"]["Position"] = UDim2.new(0, 0, 0.85778, 0);
+				Slider["25"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+				Slider["25"]["Name"] = [[slider]];
+
+
+				-- StarterGui.ui lib.gamesense window.tab.content.slider.click
+				Slider["26"] = Instance.new("TextButton", Slider["25"]);
+				Slider["26"]["BorderSizePixel"] = 0;
+				Slider["26"]["TextXAlignment"] = Enum.TextXAlignment.Left;
+				Slider["26"]["TextSize"] = 14;
+				Slider["26"]["TextColor3"] = Color3.fromRGB(228, 228, 228);
+				Slider["26"]["BackgroundColor3"] = Color3.fromRGB(27, 27, 27);
+				Slider["26"]["FontFace"] = Font.new([[rbxasset://fonts/families/RobotoMono.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+				Slider["26"]["Size"] = UDim2.new(0, 333, 0, 22);
+				Slider["26"]["BackgroundTransparency"] = 1;
+				Slider["26"]["Name"] = [[click]];
+				Slider["26"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+				Slider["26"]["Text"] = typeof(options.Name) == "string" and options.Name or "You must pass a string to the slider!"
+				Slider["26"]["Position"] = UDim2.new(0.5, -166, 0.24419, -11);
+
+
+				-- StarterGui.ui lib.gamesense window.tab.content.slider.click.value
+				Slider["27"] = Instance.new("TextButton", Slider["26"]);
+				Slider["27"]["BorderSizePixel"] = 0;
+				Slider["27"]["TextXAlignment"] = Enum.TextXAlignment.Right;
+				Slider["27"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+				Slider["27"]["TextSize"] = 14;
+				Slider["27"]["FontFace"] = Font.new([[rbxasset://fonts/families/RobotoMono.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+				Slider["27"]["TextColor3"] = Color3.fromRGB(228, 228, 228);
+				Slider["27"]["BackgroundTransparency"] = 1;
+				Slider["27"]["Size"] = UDim2.new(0, 110, 0, 22);
+				Slider["27"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+				
+				Slider["27"]["Text"] = typeof(options.Default) == "number" and tostring(options.Default) or "2"
+				if typeof(options.Default) ~= "number" then options.Default = 2 end
+				
+				Slider["27"]["ZIndex"] = 2;
+				Slider["27"]["Name"] = [[value]];
+				Slider["27"]["Position"] = UDim2.new(1.27027, -200, 0, 0);
+
+
+				-- StarterGui.ui lib.gamesense window.tab.content.slider.UICorner
+				Slider["28"] = Instance.new("UICorner", Slider["25"]);
+				Slider["28"]["CornerRadius"] = UDim.new(0, 2);
+
+
+				-- StarterGui.ui lib.gamesense window.tab.content.slider.UIStroke
+				Slider["29"] = Instance.new("UIStroke", Slider["25"]);
+				Slider["29"]["Transparency"] = 0.8;
+				Slider["29"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+				Slider["29"]["LineJoinMode"] = Enum.LineJoinMode.Bevel;
+				Slider["29"]["Thickness"] = 0.6;
+				Slider["29"]["Color"] = Color3.fromRGB(100, 100, 100);
+
+
+				-- StarterGui.ui lib.gamesense window.tab.content.slider.SliderBG
+				Slider["2a"] = Instance.new("Frame", Slider["25"]);
+				Slider["2a"]["BorderSizePixel"] = 0;
+				Slider["2a"]["BackgroundColor3"] = Color3.fromRGB(41, 41, 41);
+				Slider["2a"]["Size"] = UDim2.new(0, 333, 0, 7);
+				Slider["2a"]["Position"] = UDim2.new(0.16857, -50, 0.77907, -6);
+				Slider["2a"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+				Slider["2a"]["Name"] = [[SliderBG]];
+
+
+				-- StarterGui.ui lib.gamesense window.tab.content.slider.SliderBG.UICorner
+				Slider["2b"] = Instance.new("UICorner", Slider["2a"]);
+
+
+
+				-- StarterGui.ui lib.gamesense window.tab.content.slider.SliderBG.Slider
+				Slider["2c"] = Instance.new("TextButton", Slider["2a"]);
+				Slider["2c"]["BorderSizePixel"] = 0;
+				Slider["2c"]["BackgroundColor3"] = Color3.fromRGB(50, 255, 67);
+				Slider["2c"]["Size"] = UDim2.new(0, 180, 0, 7);
+				Slider["2c"]["Position"] = UDim2.new(0.5, -166, 0.35714, -3);
+				Slider["2c"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+				Slider["2c"]["Name"] = [[Slider]];
+				Slider["2c"]["Text"] = [[]];
+
+
+				-- StarterGui.ui lib.gamesense window.tab.content.slider.SliderBG.Slider.UICorner
+				Slider["2d"] = Instance.new("UICorner", Slider["2c"]);
+			end
+			
+			--// Methods
+			function Slider:SetValue(v: number)
+				local step = options.Step
+				if v == nil then --// setting via mouse/drag
+					
+					----// 2c == bar inside, so we use 2a to reference the whole bar
+					local percentage = math.clamp(
+						(MOUSE.X - Slider["2a"].AbsolutePosition.X) / Slider["2a"].AbsoluteSize.X, 0, 1
+					)
+					local rawValue = ((options.Max - options.Min) * percentage) + options.Min
+					local steppedValue = math.floor((rawValue / step) + 0.5) * step --// round to nearest step
+					local clampedValue = math.clamp(steppedValue, options.Min, options.Max) --// ensure boundaries
+
+					--// determine how far back step goes (0.001 = format to 3 decimals, 0.01 = 2, 0.1 = 1, 1 = 0 etc)
+					local stepString = tostring(step)
+					local decimalMatch = stepString:match("%.(%d+)$")
+					local decimalPlaces = decimalMatch and #decimalMatch or 0 --// uses 0 if there's no decimal part
+					local format = "%." .. decimalPlaces .. "f"
+					Slider["27"].Text = string.format(format, clampedValue) --// format to x dcimal places
+					Slider["2c"].Size = UDim2.fromScale((clampedValue - options.Min) / (options.Max - options.Min), 1)
+					
+				else --// manually changed via lua
+					
+					assert(v >= options.Min and v <= options.Max, string.format("[ gamesense ] [ slider_%s ] value must be between %s and %s", options.Name, options.Min, options.Max))
+					assert(typeof(v) == "number", "[ gamesense ] [ slider_"..options["Name"].." ] value must be a number")
+					Slider["27"].Text = tostring(v)
+					Slider["2c"].Size = UDim2.fromScale((v - options.Min) / (options.Max - options.Min), 1)
+					
+				end
+				
+				options.Callback(Slider:GetValue())
+			end
+			function Slider:GetValue()
+				return tonumber(Slider["27"].Text)
+			end
+			
+			--// Logic
+			--// Maybe handle hover, and then check if hovering then setvalue else don't and disconnect after 1 sec
+			do	
+				--// broken ahh
+				--Slider["2c"].MouseEnter:Connect(function()
+				--	Slider.Hover = true
+				--end)
+				--Slider["2c"].MouseLeave:Connect(function()
+				--	Slider.Hover = false
+				--	task.wait(1)
+				--	if not Slider.Hover then
+				--		Slider.MouseDown = false
+
+				--		pcall(function() if Slider.Connection:Disconnect() then Slider.Connection:Disconnect() end end) --// fails sometimes, we can just wrap in pcall
+				--		Slider.Connection = nil
+				--	end
+				--end)
+				
+				Slider["2c"].MouseButton1Down:Connect(function()
+					Slider.MouseDown = true
+					
+					if not Slider.Connection then
+						Slider.Connection = s_runservice.RenderStepped:Connect(function()
+							--if Slider.Hover then Slider:SetValue() end
+							Slider:SetValue()
+						end)
+					end
+				end)
+				Slider["2c"].MouseButton1Up:Connect(function()
+					Slider.MouseDown = false
+					
+					pcall(function() if Slider.Connection:Disconnect() then Slider.Connection:Disconnect() end end) --// fails sometimes, we can just wrap in pcall
+					Slider.Connection = nil
+				end)
+				
+				Slider["27"].MouseButton1Down:Connect(function()
+					Slider:SetValue(options["Default"])
+				end)
+			end
+			
+			--// Initalize
+			do
+				Slider:SetValue(options["Default"]) --// will position slider @ default area and not hard coded position
+			end
+		end
+		
+		function Tab:Toggle(options: table)
+			options = Library:_validate({
+				Name = "Toggle",
+				State = false,
+				Callback = function(v) print(v) end
+			}, options or {})
+
+			local Toggle = {
+				State = options["State"]
+			}
+
+			--// Render
+			do
+				------------- TOGGLE
+				-- StarterToggle.ui lib.gamesense window.tab.content.toggle
+				Toggle["18"] = Instance.new("Frame", Tab["5"]);
+				Toggle["18"]["BorderSizePixel"] = 0;
+				Toggle["18"]["BackgroundColor3"] = Color3.fromRGB(26, 26, 26);
+				Toggle["18"]["Size"] = UDim2.new(0, 350, 0, 30);
+				Toggle["18"]["Position"] = UDim2.new(0, 0, 0.08696, 0);
+				Toggle["18"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+				Toggle["18"]["Name"] = [[toggle]];
+
+
+				-- StarterToggle.ui lib.gamesense window.tab.content.toggle.click
+				Toggle["19"] = Instance.new("TextButton", Toggle["18"]);
+				Toggle["19"]["BorderSizePixel"] = 0;
+				Toggle["19"]["TextXAlignment"] = Enum.TextXAlignment.Left;
+				Toggle["19"]["TextSize"] = 14;
+				Toggle["19"]["TextColor3"] = Color3.fromRGB(228, 228, 228);
+				Toggle["19"]["BackgroundColor3"] = Color3.fromRGB(27, 27, 27);
+				Toggle["19"]["FontFace"] = Font.new([[rbxasset://fonts/families/RobotoMono.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+				Toggle["19"]["Size"] = UDim2.new(0, 333, 0, 22);
+				Toggle["19"]["BackgroundTransparency"] = 1;
+				Toggle["19"]["Name"] = [[click]];
+				Toggle["19"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+				Toggle["19"]["Text"] = typeof(options["Name"]) == "string" and options["Name"] or "You must pass a string to the toggle!"
+				Toggle["19"]["Position"] = UDim2.new(0.5, -166, 0.5, -11);
+
+
+				-- StarterToggle.ui lib.gamesense window.tab.content.toggle.click.toggle
+				Toggle["1a"] = Instance.new("Frame", Toggle["19"]);
+				Toggle["1a"]["BorderSizePixel"] = 0;
+				Toggle["1a"]["BackgroundColor3"] = options["State"] == true and Color3.fromRGB(28, 173, 26) or Color3.fromRGB(174, 23, 25)
+				Toggle["1a"]["Size"] = UDim2.new(0, 18, 0, 18);
+				Toggle["1a"]["Position"] = UDim2.new(1, -18, 0.5, -9);
+				Toggle["1a"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+				Toggle["1a"]["Name"] = [[toggle]];
+
+
+				-- StarterToggle.ui lib.gamesense window.tab.content.toggle.click.toggle.UICorner
+				Toggle["1b"] = Instance.new("UICorner", Toggle["1a"]);
+				Toggle["1b"]["CornerRadius"] = UDim.new(0, 2);
+
+
+				-- StarterToggle.ui lib.gamesense window.tab.content.toggle.UICorner
+				Toggle["1c"] = Instance.new("UICorner", Toggle["18"]);
+				Toggle["1c"]["CornerRadius"] = UDim.new(0, 2);
+
+
+				-- StarterToggle.ui lib.gamesense window.tab.content.toggle.UIStroke
+				Toggle["1d"] = Instance.new("UIStroke", Toggle["18"]);
+				Toggle["1d"]["Transparency"] = 0.8;
+				Toggle["1d"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+				Toggle["1d"]["LineJoinMode"] = Enum.LineJoinMode.Bevel;
+				Toggle["1d"]["Thickness"] = 0.6;
+				Toggle["1d"]["Color"] = Color3.fromRGB(100, 100, 100);
+			end
+
+			--// Methods
+			function Toggle:_update()
+				--Toggle["1a"]["BackgroundColor3"] = options["State"] == true and Color3.fromRGB(28, 173, 26) or Color3.fromRGB(174, 23, 25)
+				--// use tweens
+				if Toggle["State"] == true then
+					--print("true tween")
+					Library:_tween(
+						Toggle["1a"], 
+						{BackgroundColor3 = Color3.fromRGB(28, 173, 26)}
+					)
+				else
+					--print("false tween")
+					Library:_tween(
+						Toggle["1a"], 
+						{BackgroundColor3 = Color3.fromRGB(174, 23, 25)}
+					)
+				end
+			end
+			function Toggle:SetValue(bool: boolean)
+				assert(typeof(bool) == "boolean", "Toggle:SetValue must be passed a boolean.")
+				Toggle["State"] = bool
+				Toggle:_update()
+			end
+			function Toggle:GetValue()
+				return Toggle["State"]
+			end
+
+			--// Logic
+			do
+				Toggle["19"].MouseButton1Down:Connect(function()
+					Toggle["State"] = not Toggle["State"]
+					Toggle:_update()
+					
+					options["Callback"](Toggle:GetValue())
+				end)
+			end
+		end
+		
+		function Tab:Textbox(options: table)
+			options = Library:_validate({
+				Placeholder = "Enter your username...",
+				Callback = function(v) print(v) end
+			}, options or {})
+
+			local Textbox = {}
+
+			--// Render
+			do
+				------------- Textbox
+				-- StarterTextbox.ui lib.gamesense window.tab.content.Textbox
+				Textbox["12"] = Instance.new("Frame", Tab["5"]);
+				Textbox["12"]["BorderSizePixel"] = 0;
+				Textbox["12"]["BackgroundColor3"] = Color3.fromRGB(26, 26, 26);
+				Textbox["12"]["Size"] = UDim2.new(0, 350, 0, 30);
+				Textbox["12"]["Position"] = UDim2.new(0, 0, 0.08696, 0);
+				Textbox["12"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+				Textbox["12"]["Name"] = [[Textbox]];
+
+
+				-- StarterTextbox.ui lib.gamesense window.tab.content.Textbox.UICorner
+				Textbox["13"] = Instance.new("UICorner", Textbox["12"]);
+				Textbox["13"]["CornerRadius"] = UDim.new(0, 2);
+
+
+				-- StarterTextbox.ui lib.gamesense window.tab.content.Textbox.UIStroke
+				Textbox["14"] = Instance.new("UIStroke", Textbox["12"]);
+				Textbox["14"]["Transparency"] = 0.8;
+				Textbox["14"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+				Textbox["14"]["LineJoinMode"] = Enum.LineJoinMode.Bevel;
+				Textbox["14"]["Thickness"] = 0.6;
+				Textbox["14"]["Color"] = Color3.fromRGB(100, 100, 100);
+
+
+				-- StarterTextbox.ui lib.gamesense window.tab.content.Textbox.input
+				Textbox["15"] = Instance.new("TextBox", Textbox["12"]);
+				Textbox["15"]["TextColor3"] = Color3.fromRGB(228, 228, 228);
+				Textbox["15"]["PlaceholderColor3"] = Color3.fromRGB(100, 100, 100);
+				Textbox["15"]["BorderSizePixel"] = 0;
+				Textbox["15"]["TextXAlignment"] = Enum.TextXAlignment.Left;
+				Textbox["15"]["TextSize"] = 14;
+				Textbox["15"]["Name"] = [[input]];
+				Textbox["15"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+				Textbox["15"]["FontFace"] = Font.new([[rbxasset://fonts/families/RobotoMono.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+				Textbox["15"]["PlaceholderText"] = typeof(options["Placeholder"] == "string") and options["Placeholder"] or "Incorrect placeholder passed"
+				Textbox["15"]["Size"] = UDim2.new(0, 315, 0, 30);
+				Textbox["15"]["Position"] = UDim2.new(0.02571, 0, 0.83333, -25);
+				Textbox["15"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+				Textbox["15"]["Text"] = [[]];
+				Textbox["15"]["BackgroundTransparency"] = 1;
+				Textbox["15"]["ClearTextOnFocus"] = false;
+
+
+				-- StarterTextbox.ui lib.gamesense window.tab.content.Textbox.icon
+				Textbox["16"] = Instance.new("ImageLabel", Textbox["12"]);
+				Textbox["16"]["Image"] = [[rbxassetid://11422142913]];
+				Textbox["16"]["Size"] = UDim2.new(0, 18, 0, 18);
+				Textbox["16"]["BackgroundTransparency"] = 1;
+				Textbox["16"]["Name"] = [[icon]];
+				Textbox["16"]["Position"] = UDim2.new(0.97714, -18, 0.5, -9);
+			end
+
+			--// Methods
+			function Textbox:SetValue(text: string)
+				assert(text, string.format("[ gamesense ] [ Textbox_%s ] text is required", options["Placeholder"]))
+				assert(type(text) == "string", string.format("[ gamessense ] [ Textbox_%s ] text must be a string", options["Placeholder"]))
+				Textbox["15"].Text = tostring(text)
+			end
+			function Textbox:GetValue()
+				return tostring(Textbox["15"].Text)
+			end
+
+			--// Logic
+			do
+				Textbox["15"].FocusLost:Connect(function(ep, itcp)
+					if not ep then return end
+					
+					options["Callback"](Textbox:GetValue())
+				end)
+			end
+		end
+		
+		return Tab
+	end
+	
+	Library:Notify({
+		Description = "Gamesense.lua has been loaded.",
+		Duration = 5
+	})
+	return GUI
+end
+
+return Library -- for publishing else remove
